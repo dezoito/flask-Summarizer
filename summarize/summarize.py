@@ -75,7 +75,8 @@ def summarize_block(block):
     """Return the sentence that best summarizes block"""
     if not block:
         return None
-    sents = nltk.sent_tokenize(block)
+    # sents = nltk.sent_tokenize(block)
+    sents = sent_detector.tokenize(block)
     word_sents = list(map(nltk.word_tokenize, sents))
     d = dict((compute_score(word_sent, word_sents), sent)
              for sent, word_sent in zip(sents, word_sents))
