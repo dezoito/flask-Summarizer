@@ -17,18 +17,25 @@ echo "--- python/Flask Stuff  (notice version 3) ---"
 echo "***********************************************"
 sudo apt-get -y install python3-pip
 sudo apt-get -y install python3-dev python3-setuptools
-sudo pip3 install flask
-sudo pip3 install flask-login
-sudo pip3 install flask-openid
-sudo pip3 install flask-mail
-sudo pip3 install flask-sqlalchemy
-sudo pip3 install sqlalchemy-migrate
-sudo pip3 install flask-whooshalchemy
-sudo pip3 install flask-wtf
-sudo pip3 install flask-babel
-sudo pip3 install guess_language
-sudo pip3 install flipflop
-sudo pip3 install coverage
+sudo apt-get -y install git
+
+
+echo "***********************************************"
+echo "--- requirements ---"
+echo "***********************************************"
+cd /vagrant
+sudo pip3 install requirements.txt
+
+echo "***********************************************"
+echo "--- setting up summarize ---"
+echo "***********************************************"
+# Note, the NLTK packages must have already been downloaded to
+# the GUEST folder: "/home/vagrant/nltk_data/"
+# I initially used "all-corpora"
+python3 nltk_setup.py
+
+cd summarize.py/summarize
+sudo python3 setup.py install
 
 # echo "***********************************************"
 # echo "--- firefox + selenium (for tests)          ---"

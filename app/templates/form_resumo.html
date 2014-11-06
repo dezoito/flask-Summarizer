@@ -17,6 +17,11 @@
 
       </p>
 
+      {% if rc.texto_resumido %}
+      Texto Resumido:<br/>
+        {{ rc.texto_resumido }}
+      {% endif %}
+
       <p><input type="submit" value="go"></p>
   </form>
 {% endblock %}
