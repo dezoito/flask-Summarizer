@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block head_title %}Resume App{% endblock %}
+
+
+{% block content %}
+  <h1>{{ title }}</h1>
+  <form action="" method="post" name="form_resumo">
+      {{ form.hidden_tag() }}
+      <p>
+          Please enter your text:<br>
+          {{ form.texto(rows=7, cols=40) }}<br>
+
+          {% for error in form.texto.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+          {% endfor %}<br>
+
+      </p>
+
+      <p><input type="submit" value="go"></p>
+  </form>
+{% endblock %}
