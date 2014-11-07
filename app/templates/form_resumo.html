@@ -9,7 +9,7 @@
       {{ form.hidden_tag() }}
       <p>
           Please enter your text:<br>
-          {{ form.texto(rows=10, cols=70) }}<br>
+          {{ form.texto(rows=15, cols=70) }}<br>
 
           {% for error in form.texto.errors %}
             <span style="color: red;">[{{ error }}]</span>
@@ -20,7 +20,7 @@
       {% if rc.texto_resumido %}
 
       Texto Resumido:<br/>
-        <textarea cols="70" rows="10" name="txt_resumo">{{ rc.texto_resumido }}</textarea>
+        <textarea cols="70" rows="15" name="txt_resumo">{{ rc.texto_resumido }}</textarea>
       {% endif %}
 
       <p><input type="submit" value="go"></p>
