@@ -1,0 +1,12 @@
+                  <!-- flash messages -->
+                  <div>
+                     {% with messages = get_flashed_messages() %}
+                       {% if messages %}
+                       <span class="alert alert-dismissable">
+                         {% for message in messages %}
+                             <p id="alert_message" class="alert alert-info">{{ message }} </p>
+                         {% endfor %}
+                         </span>
+                       {% endif %}
+                     {% endwith %}
+                  </div>
