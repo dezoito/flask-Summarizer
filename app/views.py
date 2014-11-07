@@ -1,5 +1,5 @@
-from flask import render_template, flash, redirect, request
-import summarize
+from flask import render_template, flash, Response, redirect, request, jsonify
+import summarize, pprint
 from app import app
 from .forms import FormResumo
 
@@ -24,14 +24,20 @@ def form_resumo():
                            form=form,
                            rc = rc)
 
+
 @app.route('/ajax_resumo', methods=['POST'])
 # check: http://blog.miguelgrinberg.com/post/the-flask-mega-tutorial-part-xv-ajax
 def ajax_resumo():
-    # rc = {}
-    # entrada = request.form['texto']
-    # texto_resumido = summarize.summarize_text(entrada, block_sep='\n')
-    # return texto_resumido
-    return "success"
+    rc = {}
+    entrada = request.form["texto"]
+    texto_resumido = summarize.summarize_text(entrada, block_sep='\n')
+    return Response("tentando retorno de texto resumido", mimetype="text/text")
+    # return Response(texto_resumido, mimetype="text/text")
+
+    # debugging request
+    # str = pprint.pformat(request.environ, depth=5)
+    # return Response(str, mimetype="text/text")
+    # return jsonify(texto_resumido)
 
 
     # if form.validate_on_submit():

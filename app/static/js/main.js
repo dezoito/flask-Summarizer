@@ -4,14 +4,15 @@ jQuery(document).ready(function(){
      * requests summarization via ajax
      */
     $("#btnAjax").click(function(){
-        var form = $( "form_resumo" );
+
         $.ajax({
                 type:"POST",
                 url:"/ajax_resumo",
-                data:form.serialize(),
+                data:$( "#form_resumo" ).serialize(),
+
                 success: function(response){
                     $( "#txt_resumo" ).val( response );
-                    console.log(response);
+                    // console.log($( "#form_resumo" ).serialize());
                 },
 
                 fail: function(response){
