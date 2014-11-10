@@ -19,11 +19,6 @@ jQuery(document).ready(function(){
                 fail: function(response){
                     console.log(response);
                 }
-            });
         });
-
-        // alert($( "texto" ).val());
-        // $.post( "/ajax_resumo", $( "#texto" ).val() {
-        //   $( "#txt_resumo" ).value( data );
-        // });
+    });
 });

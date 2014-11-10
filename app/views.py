@@ -3,7 +3,6 @@ import summarize, pprint
 from app import app
 from .forms import FormResumo
 
-
 @app.route('/', methods=['GET', 'POST'])
 @app.route('/form_resumo', methods=['GET', 'POST'])
 def form_resumo():
@@ -38,7 +37,6 @@ def ajax_resumo():
     texto_resumido = make_summary(entrada)
     return Response(str(texto_resumido), mimetype="text/text")
 
-
 def make_summary(entrada):
     """
     Uses summary module to reduce text
@@ -54,7 +52,6 @@ def make_summary(entrada):
     # if form.validate_on_submit():
     #         # flash('Texto digitado:%s ' % (form.texto.data))
     #         # return redirect('/index')
-
 
 
 
