@@ -30,9 +30,13 @@
   </form>
 
 <script type="text/javascript">
-  document.write("tamanho original: " + document.form_resumo.texto.value.length);
-  document.write("<br>");
-  document.write("tamanho resumido: " + document.form_resumo.txt_resumo.value.length);
+  function comparaStrings(){
+      document.write("tamanho original: " + document.form_resumo.texto.value.length);
+      document.write("<br>");
+      document.write("tamanho resumido: " + document.form_resumo.txt_resumo.value.length);
+  }
+
+  comparaStrings();
 </script>
 
 {% endblock %}

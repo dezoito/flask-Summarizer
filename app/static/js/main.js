@@ -12,6 +12,7 @@ jQuery(document).ready(function(){
 
                 success: function(response){
                     $( "#txt_resumo" ).val( response );
+                    console.log("Ajax call to method --ajax_resumo-- answered");
                     // console.log($( "#form_resumo" ).serialize());
                 },
 
