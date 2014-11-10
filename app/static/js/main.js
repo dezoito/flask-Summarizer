@@ -4,7 +4,6 @@ jQuery(document).ready(function(){
      * requests summarization via ajax
      */
     $("#btnAjax").click(function(){
-
         $.ajax({
                 type:"POST",
                 url:"/ajax_resumo",
@@ -13,7 +12,6 @@ jQuery(document).ready(function(){
                 success: function(response){
                     $( "#txt_resumo" ).val( response );
                     console.log("Ajax call to method --ajax_resumo-- answered");
-                    // console.log($( "#form_resumo" ).serialize());
                 },
 
                 fail: function(response){
@@ -24,7 +22,7 @@ jQuery(document).ready(function(){
 });
 
 /**
- * Insert text samples for testing
+ * Insert text samples for testing algorithms
  */
 text_sample = [];
 text_sample.push("Ela anda rapidemente na plataforma da estação do Leste de um ritmo furioso e decidido. O ovido colado ao i phone, ela escuta uma messagem que uma amiga deixo. Ela ésta com pressa. Suas calças prêtas concordo com o seu casaco cizento e apertado. O som das bombas batem o ritmo de sua pressa. Ela vai apanhar um trem para regressar a casa, na cidade onde um homen espera por ela, um homen que ela ama. De repente, alguma coisa para ela. No chão, esta algo azul que perece sedoso. Ela se abaixa para ver de perto o que é. Um suéter. Um suéter azul. Um suéter azul em lã. Ela apanho o e commença a verificar a coisa. Ele ésta limpo e em bom estado. Ela decida de levar o, e coloca o na sua bolsa. O seu caminho abra se de novo em frente dela, e no meio das pessoas caminhando e correndo, ela volta à sua própria rapidez. \n\n Assentada no trem, ela pensa no seu dia, o que serà a sua noite ? O que não se sabe ainda aparece tão real, mas não é. Ela fecha o olhos, deixando-se balançar para os movimentos do TGV, e começa à sonhar. Sonolente, ela acorda com uma voze que indica à todos que o terminus é perto. Ela se prepara a saïr do vagão e, abrindo sua bolsa, ela vé o suéter azul. Ela pensa neste momento ao seu namorado, um presente para ele. Ele gosta muito da cor azul. \n\n Andando pelas ruas até seu apartemento, ela pensa ao suéter. Objeto encontrado, objeto perdido. Nada se perde, tudo é oferecido, ainda mais por amor. Ela imagina então o antigo proprietario do suéter. Quem poudia ser ele ? Um homem. Jovem. Não, talvez entre duas idades da vida, de quarante anos, ou mais. Grande e forte ? O suéter é larga. Précioso, ele ésta limpo e cheira bem, cheira o patchouli. Àtràs da manga direita, apareçem dois buracos. Um fil branco deixa pensar que ele foï remendado, pelo um homen ou mulher. Alguèm que cria fechar estes buracos. Que pena, com esses, o suéter parece ainda mais precioso. Que podia pensar o homem destes furos, cri-ele os tapar ? Ou talvez os apagar ? E finalemente, ele deixou-os. Ha buracos que não se pode tapar, nunca, com nada. Só crer com um amor, e seu desejo. \n\n Agora em sua casa, o seu homem não està là ainda. Ele deixo uma messagem para explicar sua ausência. Que se importa ! Há vestigios dele em todo o appartemento. Ele tira os sapatos e começa a andar descalço, para sentir o chão cada andar. Ele toca música e sente-se no sofà. Mecanicamente, ela liga a televisão e coloco qualquer canal sem o olhar. A camisola azul envolve a sua mente ainda mas. Ela alcança, agarra-lo, e amá-lo. O que podia sentir seu dono ? Talvez ele está tristo ou com raiva. Não importe hoje, porque hoje, esse suèter vai ter uma secunda vida, uma vida nova. Ele desepereceu, mas apenas para um. Agora, ele tem uma nova sorte, para outros. O único que desepareceu realement, era seu portador.");
@@ -34,4 +32,5 @@ text_sample.push("Nunca gostei dos artigos que falam que o amor é um sentimento
 
 function insertSampleText(sample){
     $(" #texto ").val( text_sample[sample]);
+    $( "#txt_resumo" ).val( "" );
 }
