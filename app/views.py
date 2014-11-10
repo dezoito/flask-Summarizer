@@ -49,10 +49,5 @@ def make_summary(entrada):
     # return jsonify(texto_resumido)
 
 
-    # if form.validate_on_submit():
-    #         # flash('Texto digitado:%s ' % (form.texto.data))
-    #         # return redirect('/index')
-
-
 
 
