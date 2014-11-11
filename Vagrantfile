@@ -20,7 +20,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
       # o script abaixo inicia o aplication de inventario
       # flask_config.vm.provision :shell, path: "startapp.sh"
 
-      # porta mapeada para o webserver de dev do django (util para debug)
+      # porta mapeada para o webserver de dev do flask (util para debug)
       flask_config.vm.network :forwarded_port, host: 5000, guest: 5000
 
       # porta mapeada para o webserver gunicorn
@@ -38,7 +38,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
       # backing providers for Vagrant. These expose provider-specific options.
       # Example for VirtualBox:
       #
-      django_config.vm.provider "virtualbox" do |vb|
+      flask_config.vm.provider "virtualbox" do |vb|
         # Don't boot with headless mode
         vb.gui = true
 

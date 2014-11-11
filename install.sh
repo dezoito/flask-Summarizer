@@ -19,7 +19,6 @@ sudo apt-get -y install python3-pip
 sudo apt-get -y install python3-dev python3-setuptools
 sudo apt-get -y install git
 
-
 echo "***********************************************"
 echo "--- requirements ---"
 echo "***********************************************"
