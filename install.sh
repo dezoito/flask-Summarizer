@@ -5,6 +5,13 @@ echo "***********************************************"
 echo "***************** install *********************"
 echo "***********************************************"
 
+echo "***********************************************"
+echo "---Copiando configs para /etc/apt/apt.conf---"
+echo "***********************************************"
+# copia configs de proxu para o apt
+# (Rodar apenas em prod)
+sudo cp /vagrant/shell_commands/apt_proxy_config /etc/apt/apt.conf
+
 
 echo "***********************************************"
 echo "---apt update e upgrade---"
@@ -19,11 +26,13 @@ sudo apt-get -y install python3-pip
 sudo apt-get -y install python3-dev python3-setuptools
 sudo apt-get -y install git
 
+
 echo "***********************************************"
 echo "--- requirements ---"
 echo "***********************************************"
 cd /vagrant
 sudo pip3 install requirements.txt
+
 
 echo "***********************************************"
 echo "--- setting up summarize ---"
@@ -35,6 +44,14 @@ python3 nltk_setup.py
 
 cd summarize.py/summarize
 sudo python3 setup.py install
+
+echo "***********************************************"
+echo "---copying configs: /etc/re.local"
+echo "***********************************************"
+sudo cp /vagrant/shell_commands/etc_rc.local /etc/rc.local
+sudo chmod +x /etc/rc.local
+source /etc/rc.local
+
 
 # echo "***********************************************"
 # echo "--- firefox + selenium (for tests)          ---"

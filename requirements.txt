@@ -24,6 +24,7 @@ decorator==3.4.0
 defusedxml==0.4.1
 flipflop==1.0
 guess-language==0.2
+gunicorn==19.1.1
 html5lib==0.999
 itsdangerous==0.24
 language-selector==0.1
