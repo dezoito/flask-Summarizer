@@ -17,8 +17,8 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
       # ele é chamado usando vagrant up --provision
       flask_config.vm.provision :shell, path: "install.sh"
 
-      # o script abaixo inicia o aplication de inventario
-      # flask_config.vm.provision :shell, path: "startapp.sh"
+      # Automatically starts flask application...runs ALWAYS
+      flask_config.vm.provision :shell, path: "startapp.sh", run: "always"
 
       # porta mapeada para o webserver de dev do flask (util para debug)
       flask_config.vm.network :forwarded_port, host: 5000, guest: 5000
@@ -43,7 +43,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
         vb.gui = true
 
         # Use VBoxManage to customize the VM. For example to change memory:
-        vb.customize ["modifyvm", :id, "--memory", "512"]
+        vb.customize ["modifyvm", :id, "--memory", "128"]
       end
 
     end

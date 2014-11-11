@@ -26,7 +26,6 @@ sudo apt-get -y install python3-pip
 sudo apt-get -y install python3-dev python3-setuptools
 sudo apt-get -y install git
 
-
 echo "***********************************************"
 echo "--- requirements ---"
 echo "***********************************************"
@@ -45,12 +44,12 @@ python3 nltk_setup.py
 cd summarize.py/summarize
 sudo python3 setup.py install
 
-echo "***********************************************"
-echo "---copying configs: /etc/re.local"
-echo "***********************************************"
-sudo cp /vagrant/shell_commands/etc_rc.local /etc/rc.local
-sudo chmod +x /etc/rc.local
-source /etc/rc.local
+# echo "***********************************************"
+# echo "---copying configs: /etc/re.local"
+# echo "***********************************************"
+# sudo cp /vagrant/shell_commands/etc_rc.local /etc/rc.local
+# sudo chmod +x /etc/rc.local
+# source /etc/rc.local
 
 
 # echo "***********************************************"
