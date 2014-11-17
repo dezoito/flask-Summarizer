@@ -34,6 +34,9 @@ sudo pip3 install flipflop
 sudo pip3 install coverage
 sudo pip3 install beautifulsoup4
 sudo pip3 install nltk
+sudo pip3 install numpy
+sudo pip3 install Networkx
+
 
 
 echo "***********************************************"
@@ -42,6 +45,8 @@ echo "***********************************************"
 # Note, the NLTK packages must have already been downloaded to
 # the GUEST folder: "/home/vagrant/nltk_data/"
 # I initially used "all-corpora"
+# NOTICE: This is not reliable is the script sometimes stop without downloading
+# all the language packages
 cd /vagrant
 sudo python3 nltk_setup.py
 

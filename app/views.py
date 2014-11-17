@@ -1,5 +1,5 @@
 from flask import render_template, flash, Response, redirect, request, jsonify
-import summarize, pprint
+import summarize, textrank, pprint
 from app import app
 from .forms import FormResumo
 
@@ -37,11 +37,13 @@ def ajax_resumo():
     texto_resumido = make_summary(entrada)
     return Response(str(texto_resumido), mimetype="text/text")
 
+
 def make_summary(entrada):
     """
     Uses summary module to reduce text
     """
-    return summarize.summarize_text(entrada, block_sep='\n')
+    return textrank.extractSentences(entrada)
+    # return summarize.summarize_text(entrada, block_sep='\n')
 
     # debugging request
     # str = pprint.pformat(texto_resumido, depth=5)
