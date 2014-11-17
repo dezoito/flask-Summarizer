@@ -1,51 +1,61 @@
 # -*- mode: ruby -*-
 # vi: set ft=ruby :
+#
+ require 'rbconfig'
+
+  # returns a string with a generic name for the HOST os
+  def os
+    @os ||= (
+      host_os = RbConfig::CONFIG['host_os']
+      case host_os
+      when /mswin|msys|mingw|cygwin|bccwin|wince|emc/
+        :windows
+      when /darwin|mac os/
+        :macosx
+      when /linux/
+        :linux
+      when /solaris|bsd/
+        :unix
+      else
+        raise Error::WebDriverError, "unknown os: #{host_os.inspect}"
+      end
+    )
+  end
 
 # Vagrantfile API/syntax version. Don't touch unless you know what you're doing!
 VAGRANTFILE_API_VERSION = "2"
 
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
-    config.vm.define :flask_resume do |flask_config|
-      # All Vagrant configuration is done here. The most common configuration
-      # options are documented and commented below. For a complete reference,
-      # please see the online documentation at vagrantup.com.
+  config.vm.define :flask_resume do |flask_config|
 
-      # Every Vagrant virtual environment requires a box to build off of.
-      flask_config.vm.box = "ubuntu/trusty32"
-      # flask_config.vm.box_url = "http://files.vagrantup.com/trusty32.box"
-      # ele é chamado usando vagrant up --provision
-      flask_config.vm.provision :shell, path: "install.sh"
+    flask_config.vm.box = "ubuntu/trusty32"
+    flask_config.vm.box_url = "http://files.vagrantup.com/trusty32.box"
 
-      # Automatically starts flask application...runs ALWAYS
-      flask_config.vm.provision :shell, path: "startapp.sh", run: "always"
-
-      # porta mapeada para o webserver de dev do flask (util para debug)
-      flask_config.vm.network :forwarded_port, host: 5000, guest: 5000
-
-      # porta mapeada para o webserver gunicorn
-      # flask_config.vm.network :forwarded_port, host: 8001, guest: 8001
-
-      # porta mapeda para o nginx
-      # flask_config.vm.network :forwarded_port, host: 4567, guest: 80
-
-      # Disable automatic box update checking. If you disable this, then
-      # boxes will only be checked for updates when the user runs
-      # `vagrant box outdated`. This is not recommended.
-      # config.vm.box_check_update = false
-
-      # Provider-specific configuration so you can fine-tune various
-      # backing providers for Vagrant. These expose provider-specific options.
-      # Example for VirtualBox:
-      #
-      flask_config.vm.provider "virtualbox" do |vb|
-        # Don't boot with headless mode
-        vb.gui = true
-
-        # Use VBoxManage to customize the VM. For example to change memory:
-        vb.customize ["modifyvm", :id, "--memory", "128"]
-      end
-
+    # If this is running in a windows host, we have to configure a proxy
+    # for the guest OS
+    if os == "windows"
+      flask_config.vm.provision :shell, path: "./shell_commands/proxy_config.sh"
     end
 
+    # complete provisioning for guest OS
+    flask_config.vm.provision :shell, path: "install.sh"
+
+    # Automatically starts flask application...runs ALWAYS
+    # in the future, let the guest OS handle this
+    flask_config.vm.provision :shell, path: "startapp.sh", run: "always"
+
+    # porta mapeada para o webserver de dev do flask (util para debug)
+    flask_config.vm.network :forwarded_port, host: 5000, guest: 5000
+
+    # config.vm.box_check_update = false
+
+    flask_config.vm.provider "virtualbox" do |vb|
+      # Don't boot with headless mode
+      vb.gui = false
+
+      # Use VBoxManage to customize the VM. For example to change memory:
+      vb.customize ["modifyvm", :id, "--memory", "128"]
+    end
+  end
 end

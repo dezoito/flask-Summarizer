@@ -5,19 +5,12 @@ echo "***********************************************"
 echo "***************** install *********************"
 echo "***********************************************"
 
-echo "***********************************************"
-echo "---Copiando configs para /etc/apt/apt.conf---"
-echo "***********************************************"
-# copia configs de proxu para o apt
-# (Rodar apenas em prod)
-sudo cp /vagrant/shell_commands/apt_proxy_config /etc/apt/apt.conf
 
 
 echo "***********************************************"
 echo "---apt update e upgrade---"
 echo "***********************************************"
 sudo apt-get -y update
-# sudo apt-get -y upgrade # Takes a while (but you need it to install pillow)!!!!
 
 echo "***********************************************"
 echo "--- python/Flask Stuff  (notice version 3) ---"
@@ -27,10 +20,20 @@ sudo apt-get -y install python3-dev python3-setuptools
 sudo apt-get -y install git
 
 echo "***********************************************"
-echo "--- requirements ---"
+echo "--- PIP requirements ---"
 echo "***********************************************"
 cd /vagrant
-sudo pip3 install requirements.txt
+sudo pip3 install MarkupSafe
+sudo pip3 install gunicorn
+sudo pip3 install flask
+sudo pip3 install Flask-DebugToolbar
+sudo pip3 install flask-wtf
+sudo pip3 install flask-babel
+sudo pip3 install guess_language
+sudo pip3 install flipflop
+sudo pip3 install coverage
+sudo pip3 install beautifulsoup4
+sudo pip3 install nltk
 
 
 echo "***********************************************"
@@ -39,10 +42,11 @@ echo "***********************************************"
 # Note, the NLTK packages must have already been downloaded to
 # the GUEST folder: "/home/vagrant/nltk_data/"
 # I initially used "all-corpora"
-python3 nltk_setup.py
+cd /vagrant
+sudo python3 nltk_setup.py
 
-cd summarize.py/summarize
-sudo python3 setup.py install
+# cd summarize.py
+# sudo python3 setup.py
 
 # echo "***********************************************"
 # echo "---copying configs: /etc/re.local"

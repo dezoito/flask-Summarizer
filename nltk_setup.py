@@ -5,5 +5,6 @@
 
 import nltk
 nltk.download('all-corpora')
+nltk.download('stopwords')
 nltk.download('punkt')
 
