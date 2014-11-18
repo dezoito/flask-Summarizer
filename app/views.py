@@ -1,5 +1,5 @@
-from flask import render_template, flash, Response, redirect, request, jsonify
-import summarize, textrank, pprint
+from flask import render_template, flash, Response, redirect, request
+import summarize, textrank
 from app import app
 from .forms import FormResumo
 
@@ -26,8 +26,8 @@ def form_resumo():
                            rc = rc)
 
 
-@app.route('/ajax_resumo', methods=['POST'])
 # check: http://blog.miguelgrinberg.com/post/the-flask-mega-tutorial-part-xv-ajax
+@app.route('/ajax_resumo', methods=['POST'])
 def ajax_resumo():
     """
     returns summary string to be loaded via ajax callback
@@ -40,15 +40,20 @@ def ajax_resumo():
 
 def make_summary(entrada):
     """
-    Uses summary module to reduce text
-    """
-    return textrank.extractSentences(entrada)
-    # return summarize.summarize_text(entrada, block_sep='\n')
+    Uses summary module to reduce text.
 
-    # debugging request
-    # str = pprint.pformat(texto_resumido, depth=5)
-    # return Response(str, mimetype="text/text")
-    # return jsonify(texto_resumido)
+    IMPORTANT:
+    The textrank algorythm produces better results, but takes awfully
+    long! (from 5000 to 18000ms in tests)
+
+    Therefore, we are going to use the summarize algo for this API
+    """
+    return summarize.summarize_text(entrada, block_sep='\n')
+
+    # this is better, but takes to long to be used in ajax calls
+    # return textrank.extractSentences(entrada)
+
+
 
 
 
