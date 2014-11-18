@@ -17,7 +17,7 @@ def form_resumo():
 
             # summarization happens here
             entrada = form.texto.data
-            texto_resumido = make_summary(entrada)
+            texto_resumido = make_summary(entrada, form.algorythm.data)
             rc['entrada'] = entrada
             rc['texto_resumido'] = texto_resumido
 
@@ -38,7 +38,7 @@ def ajax_resumo():
     return Response(str(texto_resumido), mimetype="text/text")
 
 
-def make_summary(entrada):
+def make_summary(entrada, algo="summarize"):
     """
     Uses summary module to reduce text.
 
@@ -48,11 +48,11 @@ def make_summary(entrada):
 
     Therefore, we are going to use the summarize algo for this API
     """
+    if algo == "summarize":
+        return summarize.summarize_text(entrada, block_sep='\n')
+    else:
+        return textrank.extractSentences(entrada)
 
-    return summarize.summarize_text(entrada, block_sep='\n')
-
-    # this is better, but takes to long to be used in ajax calls
-    # return textrank.extractSentences(entrada)
 
 
 

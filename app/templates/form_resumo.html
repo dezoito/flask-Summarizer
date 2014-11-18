@@ -22,6 +22,12 @@
           {% endfor %}<br>
 
       </p>
+
+            {{ form.algorythm.label }}: {{ form.algorythm() }}
+
+      <br/>
+      <br/>
+
       <div class="btn-group">
         <button type="submit" class="btn btn-default">Go</button>
         <button type="button" class="btn btn-default" id="btnAjax">Go with AJAX</button>
@@ -29,13 +35,14 @@
 
       <p>
 
+
       <br/>
       Texto Resumido:<br/>
       <textarea cols="70" rows="15" name="txt_resumo" id="txt_resumo">{% if rc.texto_resumido %}{{ rc.texto_resumido }}{% endif %}</textarea>
 
   </form>
 
-<script type="text/javascript">
+<!-- <script type="text/javascript">
   function comparaStrings(){
       document.write("tamanho original: " + document.form_resumo.texto.value.length);
       document.write("<br>");
@@ -43,6 +50,6 @@
   }
 
   comparaStrings();
-</script>
+</script> -->
 {% endblock %}
 
