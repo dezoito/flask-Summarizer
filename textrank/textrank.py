@@ -4,6 +4,16 @@ From this paper: http://acl.ldc.upenn.edu/acl2004/emnlp/pdf/Mihalcea.pdf
 External dependencies: nltk, numpy, networkx
 
 Based on https://gist.github.com/voidfiles/1646117
+
+-----------------------
+From: https://github.com/davidadamojr/TextRank
+For this project I commented some print statements
+and changed
+nltk.data.load('tokenizers/punkt/english.pickle')
+
+token
+
+nltk.data.load('tokenizers/punkt/portuguese.pickle')
 """
 
 import nltk
@@ -20,7 +30,7 @@ def normalize(tagged):
     return [(item[0].replace('.', ''), item[1]) for item in tagged]
 
 def unique_everseen(iterable, key=None):
-    "List unique elements, preserving order. Remember all elements ever seen."
+    """ List unique elements, preserving order. Remember all elements ever seen. """
     # unique_everseen('AAAABBBCCDAABBB') --> A B C D
     # unique_everseen('ABBCcAD', str.lower) --> A B C D
     seen = set()
@@ -37,7 +47,8 @@ def unique_everseen(iterable, key=None):
                 yield element
 
 def lDistance(firstString, secondString):
-    "Function to find the Levenshtein distance between two words/sentences - gotten from http://rosettacode.org/wiki/Levenshtein_distance#Python"
+    """ Function to find the Levenshtein distance between two words/sentences
+     - gotten from http://rosettacode.org/wiki/Levenshtein_distance#Python """
     if len(firstString) > len(secondString):
         firstString, secondString = secondString, firstString
     distances = range(len(firstString) + 1)
@@ -52,7 +63,7 @@ def lDistance(firstString, secondString):
     return distances[-1]
 
 def buildGraph(nodes):
-    "nodes - list of hashables that represents the nodes of the graph"
+    """ nodes - list of hashables that represents the nodes of the graph """
     gr = nx.Graph() #initialize an undirected graph
     gr.add_nodes_from(nodes)
     nodePairs = list(itertools.combinations(nodes, 2))
@@ -141,7 +152,7 @@ def extractSentences(text):
     return summary
 
 def writeFiles(summary, keyphrases, fileName):
-    "outputs the keyphrases and summaries to appropriate files"
+    """outputs the keyphrases and summaries to appropriate files"""
     # print "Generating output to " + "keywords/" + fileName
     keyphraseFile = open('keywords/' + fileName, 'w')
     for keyphrase in keyphrases:

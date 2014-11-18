@@ -34,9 +34,8 @@ sudo pip3 install flipflop
 sudo pip3 install coverage
 sudo pip3 install beautifulsoup4
 sudo pip3 install nltk
-sudo pip3 install numpy
-sudo pip3 install Networkx
-
+sudo pip3 install numpy # for textrank
+sudo pip3 install Networkx # for textrank
 
 
 echo "***********************************************"
@@ -48,7 +47,7 @@ echo "***********************************************"
 # NOTICE: This is not reliable is the script sometimes stop without downloading
 # all the language packages
 cd /vagrant
-sudo python3 nltk_setup.py
+python3 nltk_setup.py
 
 # cd summarize.py
 # sudo python3 setup.py
