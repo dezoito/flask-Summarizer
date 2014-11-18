@@ -17,7 +17,7 @@ def form_resumo():
 
             # summarization happens here
             entrada = form.texto.data
-            texto_resumido = make_summary(entrada, form.algorythm.data)
+            texto_resumido = make_summary(entrada, form.Algorithm.data)
             rc['entrada'] = entrada
             rc['texto_resumido'] = texto_resumido
 
@@ -43,7 +43,7 @@ def make_summary(entrada, algo="summarize"):
     Uses summary module to reduce text.
 
     IMPORTANT:
-    The textrank algorythm produces better results, but takes awfully
+    The textrank Algorithm produces better results, but takes awfully
     long! (from 5000 to 18000ms in tests)
 
     Therefore, we are going to use the summarize algo for this API
