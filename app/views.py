@@ -48,6 +48,7 @@ def make_summary(entrada):
 
     Therefore, we are going to use the summarize algo for this API
     """
+
     return summarize.summarize_text(entrada, block_sep='\n')
 
     # this is better, but takes to long to be used in ajax calls
