@@ -21,7 +21,7 @@ Stopwords and Tokenizer).
 Assuming you have VirtualBox and Vagrant installed, just cd to the project root and run
 
 ```sh
-vagrant up --provision
+    vagrant up --provision
 ```
 
 Note: if your host machine is windows, you are going to have to edit the vagrant
@@ -33,6 +33,8 @@ Note: if your host machine is windows, you are going to have to edit the vagrant
     end
 ```
 
-If everything runs smoothly, you will be able to open the app from http://localhost:5000/
+If everything runs smoothly, you will be able to open the app from [http://localhost:5000](http://localhost:5000).
+
+
 
 
