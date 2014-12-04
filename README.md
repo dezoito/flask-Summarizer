@@ -5,18 +5,18 @@ This a very simple Flask based API to create a summary from Brazilian Portuguese
 
 It is based on the following projects:
 
-Summarize.py:
+**Summarize.py:**
 https://github.com/Rotten194/summarize.py
 
-Python implementation of TextRank:
+**Python implementation of TextRank:**
 http://www.davidadamojr.com/textrank-implementation-in-python-github-repo/
 
 The Textrank algorithm seems to deliver a better summary, but was taking too
-long to run, so I just use a customeized version of summary.py (I'm using Brazilian Portuguese
+long to run, so I just use a customized version of summary.py (I'm using Brazilian Portuguese
 Stopwords and Tokenizer).
 
 
-## Bootstrapping this app
+### Bootstrapping this app
 
 Assuming you have VirtualBox and Vagrant installed, just cd to the project root and run
 
