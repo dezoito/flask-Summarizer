@@ -27,7 +27,7 @@ VAGRANTFILE_API_VERSION = "2"
 
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
-  config.vm.define :flask_resume do |flask_config|
+  config.vm.define :flask_summary do |flask_config|
 
     flask_config.vm.box = "ubuntu/trusty32"
     flask_config.vm.box_url = "http://files.vagrantup.com/trusty32.box"
