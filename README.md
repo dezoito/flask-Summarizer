@@ -24,7 +24,7 @@ Assuming you have VirtualBox and Vagrant installed, just cd to the project root 
     vagrant up --provision
 ```
 
-Note: if your host machine is windows, you are going to have to edit the vagrant
+Note: if your host machine is running windows, you have to edit the vagrant
  file and comment out these lines:
 
 ```ruby
