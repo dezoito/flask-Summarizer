@@ -1,7 +1,7 @@
 flask-Summarizer
 ---------------------------------------------------
 
-This a very simple Flask based API to create a summary from Brazilian Portuguese documents and articles.
+A very simple Flask based API to create a summary from Brazilian Portuguese documents and articles.
 
 It is based on the following projects:
 
@@ -24,7 +24,7 @@ Assuming you have VirtualBox and Vagrant installed, just cd to the project root 
     vagrant up --provision
 ```
 
-Note: if your host machine is windows, you are going to have to edit the vagrant
+Note: if your host machine runs on Windows, you have to edit the vagrant
  file and comment out these lines:
 
 ```ruby
