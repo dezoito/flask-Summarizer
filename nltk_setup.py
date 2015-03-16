@@ -4,7 +4,8 @@
 # so that we can setup the summarize packages
 
 import nltk
-nltk.download('all-corpora')
-nltk.download('stopwords')
 nltk.download('punkt')
+nltk.download('stopwords')
+nltk.download('all-corpora')
+
 

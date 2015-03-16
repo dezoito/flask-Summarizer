@@ -49,10 +49,27 @@ echo "***********************************************"
 # all the language packages
 cd /vagrant
 python3 nltk_setup.py
-echo "***********************************************"
+echo " "
 echo "--- Summarize Setup executed ---"
-echo "***********************************************"
+echo " "
 
+
+echo "***********************************************"
+echo "--- setting up Supervisor ---"
+echo "***********************************************"
+sudo cp /vagrant/shell_commands/supervisor_configs /etc/supervisor/conf.d/app.conf
+sudo supervisorctl reread
+sudo supervisorctl update
+sudo supervisorctl start app
+sudo service supervisor restart
+echo " "
+echo "--- Supervisor Setup executed ---"
+echo " "
+echo "***********************************************"
+echo " If the Summarizer App does not run on port 5000 "
+echo " You might have to manually run nltk_setup.py "
+echo " on the GUEST server, then restart supervisor "
+echo "***********************************************"
 # cd summarize.py
 # sudo python3 setup.py
 

@@ -41,8 +41,8 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     # complete provisioning for guest OS
     flask_config.vm.provision :shell, path: "./shell_commands/install.sh"
 
-    # Automatically starts flask application...runs ALWAYS
-    # in the future, let the guest OS handle this with supervisor
+    # Automatically starts flask application
+    # This is commented out because now the app is started using Supervisor
     # flask_config.vm.provision :shell, path: "./shell_commands/startapp.sh", run: "always"
 
     # porta mapeada para o webserver de dev do flask (util para debug)
