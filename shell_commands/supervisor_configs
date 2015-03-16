@@ -1,0 +1,27 @@
+############################
+# Supervisor configurations
+# should be copyied to /etc/supervisor/conf.d/app.conf
+############################
+
+#name of the process
+[program:app]
+
+#command to run
+command = gunicorn app:app -b 0.0.0.0:5000
+
+#complete path to your application directory
+directory = /vagrant
+
+#User to run the process with
+user = vagrant
+
+#Start process at system boot
+autostart=true
+
+############################
+# these commands should be run after the initial config:
+############################
+# sudo supervisorctl reread
+# sudo supervisorctl update
+# sudo supervisorctl start app
+

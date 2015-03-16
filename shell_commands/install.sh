@@ -18,6 +18,7 @@ echo "***********************************************"
 sudo apt-get -y install python3-pip
 sudo apt-get -y install python3-dev python3-setuptools
 sudo apt-get -y install git
+sudo apt-get -y install supervisor
 
 echo "***********************************************"
 echo "--- PIP requirements ---"
@@ -48,6 +49,9 @@ echo "***********************************************"
 # all the language packages
 cd /vagrant
 python3 nltk_setup.py
+echo "***********************************************"
+echo "--- Summarize Setup executed ---"
+echo "***********************************************"
 
 # cd summarize.py
 # sudo python3 setup.py

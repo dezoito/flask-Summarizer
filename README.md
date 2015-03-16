@@ -28,7 +28,7 @@ Note: if your host machine runs on Windows, you have to edit the vagrant
  file and comment out these lines:
 
 ```ruby
-     if os == "windows"
+    if os == "windows"
       flask_config.vm.provision :shell, path: "./shell_commands/proxy_config.sh"
     end
 ```
