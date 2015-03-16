@@ -48,7 +48,8 @@ echo "***********************************************"
 # NOTICE: This is not reliable is the script sometimes stop without downloading
 # all the language packages
 cd /vagrant
-python3 nltk_setup.py
+python3 nltk_setup.py &
+wait %1
 echo " "
 echo "--- Summarize Setup executed ---"
 echo " "
