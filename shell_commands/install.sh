@@ -11,11 +11,14 @@ echo "***********************************************"
 echo "---apt update e upgrade---"
 echo "***********************************************"
 sudo apt-get -y update
-
+# upgrade to sudo 14.04.2 LTS
+# sudo python3.2 get-pip.py
 echo "***********************************************"
 echo "--- python/Flask Stuff  (notice version 3) ---"
 echo "***********************************************"
 sudo apt-get -y install python3-pip
+# curl -O https://raw.githubusercontent.com/pypa/pip/master/contrib/get-pip.py # for ubuntu 12
+# sudo python3.2 get-pip.py  # for ubuntu 12
 sudo apt-get -y install python3-dev python3-setuptools
 sudo apt-get -y install git
 sudo apt-get -y install supervisor
@@ -67,6 +70,8 @@ echo "***********************************************"
 # I initially used "all-corpora"
 # NOTICE: This is not reliable is the script sometimes stop without downloading
 # all the language packages
+# Also, we try to wait until nltk_setup.py is done downloading everything it
+# needs (it takes a while)
 cd /vagrant
 python3 nltk_setup.py &
 wait %1
@@ -91,30 +96,6 @@ echo " If the Summarizer App does not run on port 5000 "
 echo " You might have to manually run nltk_setup.py "
 echo " on the GUEST server, then restart supervisor "
 echo "***********************************************"
-# cd summarize.py
-# sudo python3 setup.py
-
-# echo "***********************************************"
-# echo "---copying configs: /etc/re.local"
-# echo "***********************************************"
-# sudo cp /vagrant/shell_commands/etc_rc.local /etc/rc.local
-# sudo chmod +x /etc/rc.local
-# source /etc/rc.local
-
-
-# echo "***********************************************"
-# echo "--- firefox + selenium (for tests)          ---"
-# echo "***********************************************"
-# sudo add-apt-repository -y ppa:mozillateam/firefox-next
-# sudo apt-get -y update
-# sudo apt-get -y install firefox
-# sudo pip3 install -U selenium # notice pip3
-# sudo apt-get -y install xvfb
-
-# echo "***********************************************"
-# echo "--- starts firefox in headless mode         ---"
-# echo "***********************************************"
-# sh firefox_headless.sh
 
 
 
