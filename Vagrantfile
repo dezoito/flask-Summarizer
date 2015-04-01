@@ -29,8 +29,8 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
   config.vm.define :flask_summary do |flask_config|
 
-    flask_config.vm.box = "ubuntu/trusty32"
-    flask_config.vm.box_url = "http://files.vagrantup.com/trusty32.box"
+    flask_config.vm.box = "ubuntu/lucid32"
+    flask_config.vm.box_url = "http://files.vagrantup.com/lucid32.box"
 
     # If this is running in a windows host, we have to configure a proxy
     # for the guest OS
