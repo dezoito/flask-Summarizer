@@ -41,25 +41,25 @@ sudo pip3 install nltk
 sudo pip3 install numpy # for textrank
 sudo pip3 install Networkx # for textrank
 
-echo "***********************************************"
-echo "--- firefox + selenium (for tests)          ---"
-echo "***********************************************"
-sudo add-apt-repository -y ppa:mozillateam/firefox-next
-sudo apt-get -y update
-sudo apt-get -y install firefox
-sudo pip3 install -U selenium # notice pip3
-sudo apt-get -y install xvfb
+# echo "***********************************************"
+# echo "--- firefox + selenium (for tests)          ---"
+# echo "***********************************************"
+# sudo add-apt-repository -y ppa:mozillateam/firefox-next
+# sudo apt-get -y update
+# sudo apt-get -y install firefox
+# sudo pip3 install -U selenium # notice pip3
+# sudo apt-get -y install xvfb
 
-echo "***********************************************"
-echo "--- starts firefox in headless mode         ---"
-echo "--- (used in tests)                         ---"
-echo "***********************************************"
-sudo Xvfb :10 -ac&
+# echo "***********************************************"
+# echo "--- starts firefox in headless mode         ---"
+# echo "--- (used in tests)                         ---"
+# echo "***********************************************"
+# sudo Xvfb :10 -ac&
 
 # the commands below must run on the same terminal
 # session where the tests are run
-export DISPLAY=:10
-sudo firefox&  # this can take a while
+# export DISPLAY=:10
+# sudo firefox&  # this can take a while
 
 
 echo "***********************************************"
