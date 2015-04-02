@@ -63,7 +63,7 @@ sudo pip3 install Networkx # for textrank
 
 
 echo "***********************************************"
-echo "--- setting up summarize ---"
+echo "--- setting up NLTK for summarize ---"
 echo "***********************************************"
 # Note, the NLTK packages must have already been downloaded to
 # the GUEST folder: "/home/vagrant/nltk_data/"
@@ -75,9 +75,14 @@ echo "***********************************************"
 cd /vagrant
 python3 nltk_setup.py &
 wait %1
-echo " "
-echo "--- Summarize Setup executed ---"
-echo " "
+
+# copy downloaded language files to "vagrant" user directory
+# (They were downloaded to /root :( )
+sudo cp -R /root/nltk_data /home/vagrant/nltk_data
+
+echo "***********************************************"
+echo "--- End of NLTK setup ---"
+echo "***********************************************"
 
 
 echo "***********************************************"
@@ -94,8 +99,7 @@ echo " "
 echo "***********************************************"
 echo " If the Summarizer App does not run on port 5000 "
 echo " You might have to manually run nltk_setup.py "
-echo " on the GUEST server, then restart supervisor "
+echo " on the GUEST server                           "
 echo "***********************************************"
-
 
 
