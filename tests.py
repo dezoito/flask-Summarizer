@@ -6,47 +6,41 @@
 import os
 import unittest
 
-from config import basedir
+import config, sample_strings
 from app import app
-from textrank import textrank
-from summarize import summarize
+from app.views import make_summary
 
+# from textrank import textrank
+# from summarize import summarize
 
 class TestCase(unittest.TestCase):
     def setUp(self):
+        config.WTF_CSRF_ENABLED = False
+
+        # load sample strings
+        self.small_str  = sample_strings.small_text
+        self.medium_str  = sample_strings.medium_text
+        self.large_str  = sample_strings.large_text
+
+    def test_summarize_on_view_using_summarize_algo(self):
+        """
+        Tests summaries using the simplest algorithm
+        """
+        assert len(self.small_str) >= len(make_summary(self.small_str)) # Single line, so > or =
+        assert len(self.medium_str) > len(make_summary(self.medium_str))
+        assert len(self.large_str) > len(make_summary(self.large_str))
+
+    def test_summarize_on_view_using_text_rank_algo(self):
+        """
+        Tests summaries using the textRank algorithm (takes longer)
+        """
+        assert len(self.small_str) >= len(make_summary(self.small_str, "textrank")) # Single line, so > or =
+        assert len(self.medium_str) > len(make_summary(self.medium_str, "textrank"))
+        assert len(self.large_str) > len(make_summary(self.large_str, "textrank"))
+
+    def tearDown(self):
         pass
 
-    def test_example(self):
-        assert True != False
-    # def setUp(self):
-    #     app.config['TESTING'] = True
-    #     app.config['WTF_CSRF_ENABLED'] = False
-    #     app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///' + os.path.join(basedir, 'test.db')
-    #     self.app = app.test_client()
-    #     db.create_all()
-
-    # def tearDown(self):
-    #     db.session.remove()
-    #     db.drop_all()
-
-    # def test_avatar(self):
-    #     u = User(nickname='john', email='john@example.com')
-    #     avatar = u.avatar(128)
-    #     expected = 'http://www.gravatar.com/avatar/d4c74594d841139328695756648b6bd6'
-    #     assert avatar[0:len(expected)] == expected
-
-    # def test_make_unique_nickname(self):
-    #     u = User(nickname='john', email='john@example.com')
-    #     db.session.add(u)
-    #     db.session.commit()
-    #     nickname = User.make_unique_nickname('john')
-    #     assert nickname != 'john'
-    #     u = User(nickname=nickname, email='susan@example.com')
-    #     db.session.add(u)
-    #     db.session.commit()
-    #     nickname2 = User.make_unique_nickname('john')
-    #     assert nickname2 != 'john'
-    #     assert nickname2 != nickname
 
 if __name__ == '__main__':
     unittest.main()

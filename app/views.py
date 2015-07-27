@@ -49,7 +49,7 @@ def make_summary(entrada, algo="summarize"):
     Therefore, we are going to use the summarize algo for this API
     """
     if algo == "summarize":
-        return summarize.summarize_text(entrada, block_sep='\n')
+        return summarize.summarize_text(entrada, block_sep='\n').__str__()
     else:
         return textrank.extractSentences(entrada)
 
