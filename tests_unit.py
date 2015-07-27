@@ -9,7 +9,6 @@ import unittest
 import config, sample_strings
 from app import app
 from app.views import make_summary
-
 # from textrank import textrank
 # from summarize import summarize
 

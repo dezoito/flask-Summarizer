@@ -33,6 +33,7 @@ sudo pip3 install flask
 sudo pip3 install Flask-DebugToolbar
 sudo pip3 install flask-wtf
 sudo pip3 install flask-babel
+sudo pip3 install Flask-Testing
 sudo pip3 install guess_language
 sudo pip3 install flipflop
 sudo pip3 install coverage
