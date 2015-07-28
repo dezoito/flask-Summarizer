@@ -2,6 +2,8 @@
 #!flask/bin/python
 
 # See: http://blog.miguelgrinberg.com/post/the-flask-mega-tutorial-part-vii-unit-testing
+# AND
+# https://pythonhosted.org/Flask-Testing/
 # BTW, Tests have to run under vagrant environment!
 import os
 import unittest
@@ -37,6 +39,16 @@ class StartingTestCase(TestCase):
         self.assertEqual(response.code, 200)
         # returned source code is stored in
         # response.read()
+
+
+    # --------------------------------------------------------------------------
+    # Testing Views
+    # --------------------------------------------------------------------------
+    def test_view_form_resumo_get(self):
+        rv = self.client.get('/')
+        print(rv.data)
+        assert 'No entries here so far' in str(rv.data)
+
 
 
     def tearDown(self):

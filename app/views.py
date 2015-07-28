@@ -7,7 +7,7 @@ from .forms import FormResumo
 @app.route('/form_resumo', methods=['GET', 'POST'])
 def form_resumo():
     """
-    loads entire page with the form and summary (is text was posted)
+    loads entire page with the form and summary (if text was posted)
     """
     form = FormResumo()
     rc = {}
