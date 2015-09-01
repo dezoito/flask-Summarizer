@@ -35,6 +35,19 @@ Note: if your host machine runs on Windows, you have to edit the vagrant
 
 If everything runs smoothly, you will be able to open the app from [http://localhost:5000](http://localhost:5000).
 
+### Running Tests
+From the projects root, run: 
+```sh
+    python3 -m unittest discover
+```
+
+You can also run individual tests:
+```sh
+    python3 -m unittest tests_unit
+    python3 -m unittest tests_functional
+
+```
+
 
 
 
