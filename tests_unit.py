@@ -2,7 +2,6 @@
 #!flask/bin/python
 
 # See: http://blog.miguelgrinberg.com/post/the-flask-mega-tutorial-part-vii-unit-testing
-# BTW, Tests have to run under vagrant environment!
 import os
 import unittest
 
