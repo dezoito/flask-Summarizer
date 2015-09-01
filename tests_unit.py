@@ -21,6 +21,9 @@ class TestCase(unittest.TestCase):
         self.medium_str  = sample_strings.medium_text
         self.large_str  = sample_strings.large_text
 
+    def tearDown(self):
+        pass
+
     def test_summarize_on_view_using_summarize_algo(self):
         """
         Tests summaries using the simplest algorithm
@@ -36,9 +39,6 @@ class TestCase(unittest.TestCase):
         assert len(self.small_str) >= len(make_summary(self.small_str, "textrank")) # Single line, so > or =
         assert len(self.medium_str) > len(make_summary(self.medium_str, "textrank"))
         assert len(self.large_str) > len(make_summary(self.large_str, "textrank"))
-
-    def tearDown(self):
-        pass
 
 
 if __name__ == '__main__':
