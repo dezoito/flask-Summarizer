@@ -3,7 +3,7 @@
 #
 # This script must be run as root:
 # sudo sh install_phantomjs.sh
-#
+# Ref: https://gist.github.com/julionc/7476620
 
 if [[ $EUID -ne 0 ]]; then
     echo "This script must be run as root" 1>&2

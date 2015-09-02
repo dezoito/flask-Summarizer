@@ -6,3 +6,4 @@ __pycache__
 “htmlcov”
 .vagrant
 *.pyc
+ghostdriver.log

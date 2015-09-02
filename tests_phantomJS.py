@@ -16,7 +16,6 @@ from app import app
 
 
 class StartingTestCase(unittest.TestCase):
-
     def setUp(self):
         self.driver = webdriver.PhantomJS()
         self.baseURL = "http://localhost:5000/"
@@ -38,6 +37,7 @@ class StartingTestCase(unittest.TestCase):
         self.driver.find_element_by_id("btnSubmit").click()
         resumo = self.driver.find_element_by_id("txt_resumo").text
         assert "Resuma isso!" in resumo
+
 
 if __name__ == '__main__':
     unittest.main()
