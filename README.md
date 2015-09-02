@@ -45,7 +45,6 @@ You can also run individual tests:
 ```sh
     python3 -m unittest tests_unit
     python3 -m unittest tests_functional
-
 ```
 
 

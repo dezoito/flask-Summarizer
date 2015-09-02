@@ -43,10 +43,10 @@ sudo pip3 install numpy # for textrank
 sudo pip3 install Networkx # for textrank
 sudo pip3 install -U selenium
 
-# echo "***********************************************"
-# echo "--- PhantomJS (for tests)          ---"
-# echo "***********************************************"
-sh intall_phantomJS.sh
+echo "***********************************************"
+echo "--- PhantomJS (for tests)          ---"
+echo "***********************************************"
+sh install_phantomJS.sh
 
 
 
