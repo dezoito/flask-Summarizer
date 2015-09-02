@@ -7,7 +7,7 @@ from .forms import FormResumo
 @app.route('/form_resumo', methods=['GET', 'POST'])
 def form_resumo():
     """
-    loads entire page with the form and summary (is text was posted)
+    loads entire page with the form and summary (if text was posted)
     """
     form = FormResumo()
     rc = {}
@@ -49,7 +49,7 @@ def make_summary(entrada, algo="summarize"):
     Therefore, we are going to use the summarize algo for this API
     """
     if algo == "summarize":
-        return summarize.summarize_text(entrada, block_sep='\n')
+        return summarize.summarize_text(entrada, block_sep='\n').__str__()
     else:
         return textrank.extractSentences(entrada)
 

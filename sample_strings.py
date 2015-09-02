@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from summarize import summarize_text
+
 large_text = u"""
 Folha de S. Paulo
 Iniciar impressão | Voltar para página
@@ -61,7 +61,7 @@ That's according to a single anonymous former US official, mind you, and neither
 
 According to one of the Journal's sources, the "Remote Operations Unit" will sometimes install that software by plugging in a physical device like a USB drive, but can also do it over the internet like any other trojan, by "using a document or link that loads software when the person clicks or views it." While that source also claims the FBI takes care to make sure that only "relevant data" gets collected, it's still a little troubling to know that such a thing is easily possible and regularly done. It's worth noting that the government generally needs a warrant to conduct such surveillance activity, particularly where private content like audio conversations are concerned, but that assumes the US government doesn't simply conduct a warrantless wiretap and call it a "state secret" to block lawsuits.
 """
-print(summarize_text(medium_text))
+
 
 
 
