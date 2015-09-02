@@ -9,6 +9,8 @@
 import os
 import unittest
 import tempfile
+import sys
+sys.path.append('..')
 import urllib  # cant use urllib2 in python3 :P
 import config, sample_strings
 from flask import Flask

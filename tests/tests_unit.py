@@ -4,7 +4,8 @@
 # See: http://blog.miguelgrinberg.com/post/the-flask-mega-tutorial-part-vii-unit-testing
 import os
 import unittest
-
+import sys
+sys.path.append('..')
 import config, sample_strings
 from app import app
 from app.views import make_summary

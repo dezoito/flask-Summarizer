@@ -1,4 +1,4 @@
-flask-Summarizer
+flask_Summarizer
 ---------------------------------------------------
 
 A very simple Flask based API to create a summary from Brazilian Portuguese documents and articles.

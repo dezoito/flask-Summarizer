@@ -9,6 +9,8 @@
 # https://selenium-python.readthedocs.org/
 
 import unittest
+import sys
+sys.path.append('..')
 import config, sample_strings
 from flask import Flask
 from selenium import webdriver
