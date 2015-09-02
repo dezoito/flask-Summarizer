@@ -36,12 +36,12 @@ file and comment out these lines:
 If everything runs smoothly, you will be able to open the app from [http://localhost:5000](http://localhost:5000).
 
 ### Running Tests
-From the projects root, run:
+From the `tests` directory, run:
 ```sh
     python3 -m unittest discover
 ```
 
-You can also run individual tests:
+You can also run individual test suites:
 ```sh
     python3 -m unittest tests_unit
     python3 -m unittest tests_functional

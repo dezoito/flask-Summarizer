@@ -11,7 +11,8 @@
 import unittest
 import sys
 sys.path.append('..')
-import config, sample_strings
+import config
+import sample_strings
 from flask import Flask
 from selenium import webdriver
 from app import app

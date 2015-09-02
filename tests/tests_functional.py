@@ -12,7 +12,8 @@ import tempfile
 import sys
 sys.path.append('..')
 import urllib  # cant use urllib2 in python3 :P
-import config, sample_strings
+import config
+import sample_strings
 from flask import Flask
 from flask.ext.testing import TestCase
 from app import app

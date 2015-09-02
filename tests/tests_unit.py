@@ -6,7 +6,8 @@ import os
 import unittest
 import sys
 sys.path.append('..')
-import config, sample_strings
+import config
+import sample_strings
 from app import app
 from app.views import make_summary
 
