@@ -16,6 +16,7 @@ import sample_strings
 from flask import Flask
 from selenium import webdriver
 from app import app
+from utils import print_test_time_elapsed
 
 
 class StartingTestCase(unittest.TestCase):
@@ -30,10 +31,12 @@ class StartingTestCase(unittest.TestCase):
     # Simple tests to make sure server is UP
     # (does NOT use LiveServer)
     # --------------------------------------------------------------------------
+    @print_test_time_elapsed
     def test_home(self):
         self.driver.get(self.baseURL)
         assert "Summarizer App" == self.driver.title
 
+    @print_test_time_elapsed
     def test_home_envio_form(self):
         self.driver.get(self.baseURL)
         self.driver.find_element_by_id("texto").send_keys("Resuma isso!")

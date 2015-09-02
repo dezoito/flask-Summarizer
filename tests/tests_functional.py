@@ -17,6 +17,7 @@ import sample_strings
 from flask import Flask
 from flask.ext.testing import TestCase
 from app import app
+from utils import print_test_time_elapsed
 
 
 class StartingTestCase(TestCase):
@@ -45,6 +46,7 @@ class StartingTestCase(TestCase):
     # Simple tests to make sure server is UP
     # (does NOT use LiveServer)
     # --------------------------------------------------------------------------
+    @print_test_time_elapsed
     def test_real_server_is_up_and_running(self):
         response = urllib.request.urlopen(self.baseURL)
         self.assertEqual(response.code, 200)
@@ -54,6 +56,7 @@ class StartingTestCase(TestCase):
     # --------------------------------------------------------------------------
     # Testing Views with GET
     # --------------------------------------------------------------------------
+    @print_test_time_elapsed
     def test_view_form_resumo_get(self):
         rv = self.client.get('/')
         # print(rv.data)
@@ -63,18 +66,23 @@ class StartingTestCase(TestCase):
     # --------------------------------------------------------------------------
     # Testing Views with POST
     # --------------------------------------------------------------------------
+    @print_test_time_elapsed
     def test_view_form_resumo_post(self):
         post_data = {'texto': self.small_str}
         rv = self.client.post('/', data=post_data, follow_redirects=True)
         assert rv.status_code == 200
         assert 'Todos os direitos reservados' in str(rv.data)
 
+
+    @print_test_time_elapsed
     def test_view_form_resumo_post_with_textrank(self):
         post_data = {'texto': self.small_str, 'algorithm': 'textrank'}
         rv = self.client.post('/', data=post_data, follow_redirects=True)
         assert rv.status_code == 200
         assert 'Todos os direitos reservados' in str(rv.data)
 
+
+    @print_test_time_elapsed
     def test_ajax_resumo_post(self):
         post_data = {'texto': self.small_str}
         rv = self.client.post('/ajax_resumo',
@@ -84,6 +92,8 @@ class StartingTestCase(TestCase):
         # the ajax view returns nothing but the string
         assert b'Todos os direitos reservados' == rv.data
 
+
+    @print_test_time_elapsed
     def test_ajax_resumo_post_with_textrank(self):
         post_data = {'texto': self.small_str, 'algorithm': 'textrank'}
         rv = self.client.post('/ajax_resumo',

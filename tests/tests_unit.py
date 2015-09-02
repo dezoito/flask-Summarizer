@@ -10,6 +10,7 @@ import config
 import sample_strings
 from app import app
 from app.views import make_summary
+from utils import print_test_time_elapsed
 
 
 class TestCase(unittest.TestCase):
@@ -24,6 +25,7 @@ class TestCase(unittest.TestCase):
     def tearDown(self):
         pass
 
+    @print_test_time_elapsed
     def test_summarize_on_view_using_summarize_algo(self):
         """
         Tests summaries using the simplest algorithm
@@ -32,6 +34,7 @@ class TestCase(unittest.TestCase):
         assert len(self.medium_str) > len(make_summary(self.medium_str))
         assert len(self.large_str) > len(make_summary(self.large_str))
 
+    @print_test_time_elapsed
     def test_summarize_on_view_using_text_rank_algo(self):
         """
         Tests summaries using the textRank algorithm (takes longer)
