@@ -36,7 +36,7 @@ file and comment out these lines:
 If everything runs smoothly, you will be able to open the app from [http://localhost:5000](http://localhost:5000).
 
 ### Running Tests
-From the `tests` directory, run:
+From the `tests/` directory, run:
 ```sh
     python3 -m unittest discover
 ```
