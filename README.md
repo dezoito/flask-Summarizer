@@ -12,8 +12,7 @@ https://github.com/Rotten194/summarize.py
 http://www.davidadamojr.com/textrank-implementation-in-python-github-repo/
 
 The Textrank algorithm seems to deliver a better summary, but was taking too
-long to run, so I just use a customized version of summary.py (I'm using Brazilian Portuguese
-Stopwords and Tokenizer).
+long to run, so I just use a customized version of summary.py (I'm using Brazilian Portuguese Stopwords and Tokenizer).
 
 
 ### Bootstrapping this app
@@ -33,9 +32,15 @@ file and comment out these lines:
     end
 ```
 
+
 If everything runs smoothly, you will be able to open the app from [http://localhost:5000](http://localhost:5000).
 
+Note: If you want to run it on a virtualenv, you'll have to manually setup NLTK and
+install PhantomJS (see [`shell_commands/install.sh`](https://github.com/dezoito/flask_Summarizer/blob/master/shell_commands/install.sh) to see how it's done in Ubuntu).
+
 ### Running Tests
+The functional tests now use PhantomJS's headless browser!
+
 From the `tests/` directory, run:
 ```sh
     python3 -m unittest discover

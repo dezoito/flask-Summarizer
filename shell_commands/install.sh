@@ -92,8 +92,8 @@ python3 nltk_setup.py &
 wait %1
 
 # copy downloaded language files to "vagrant" user directory
-# (They were downloaded to /root :( )
-sudo cp -R /root/nltk_data /home/vagrant/nltk_data
+# (They were downloaded to /root if you used sudo for the command above :( )
+# sudo cp -R /root/nltk_data /home/vagrant/nltk_data
 
 echo "***********************************************"
 echo "--- End of NLTK setup ---"
