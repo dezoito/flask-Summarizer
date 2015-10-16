@@ -6,17 +6,13 @@ import os
 import unittest
 import sys
 sys.path.append('..')
-import config
 import sample_strings
-from app import app
 from app.views import make_summary
 from utils import print_test_time_elapsed
 
 
 class TestCase(unittest.TestCase):
     def setUp(self):
-        config.WTF_CSRF_ENABLED = False
-
         # load sample strings
         self.small_str = sample_strings.small_text
         self.medium_str = sample_strings.medium_text
