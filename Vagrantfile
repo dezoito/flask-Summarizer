@@ -41,6 +41,9 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     # complete provisioning for guest OS
     flask_config.vm.provision :shell, path: "./shell_commands/install.sh"
 
+    # allow plenty of time for provisioning
+    flask_config.vm.boot_timeout = 1200
+
     # Automatically starts flask application
     # This is commented out because now the app is started using Supervisor
     # flask_config.vm.provision :shell, path: "./shell_commands/startapp.sh", run: "always"
@@ -48,14 +51,14 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     # porta mapeada para o webserver de dev do flask (util para debug)
     flask_config.vm.network :forwarded_port, host: 5000, guest: 5000
 
-    # config.vm.box_check_update = false
+    config.vm.box_check_update = true
 
     flask_config.vm.provider "virtualbox" do |vb|
       # Don't boot with headless mode
       vb.gui = false
 
       # Use VBoxManage to customize the VM. For example to change memory:
-      vb.customize ["modifyvm", :id, "--memory", "256"]
+      vb.customize ["modifyvm", :id, "--memory", "512"]
     end
   end
 end
