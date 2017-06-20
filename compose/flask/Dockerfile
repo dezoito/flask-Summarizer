@@ -31,4 +31,4 @@ RUN chmod +x /gunicorn.sh
 WORKDIR /app
 
 
-# ENTRYPOINT ["/entrypoint.sh"]
+ENTRYPOINT ["/entrypoint.sh"]

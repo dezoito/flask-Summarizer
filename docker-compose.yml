@@ -10,7 +10,7 @@ services:
     build:
       context: .
       dockerfile: ./compose/flask/Dockerfile
-    command: /gunicorn.sh
+    # command: /gunicorn.sh
     # user: flask
     # depends_on:
     #   - postgres
@@ -24,8 +24,8 @@ services:
     volumes:
     # - 'myshare:/app'
     - .:/app
-    ports:
-      - "81:81"
+    # ports:
+    #   - "81:81"
 
   nginx:
     build: ./compose/nginx
