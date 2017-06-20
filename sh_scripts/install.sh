@@ -11,8 +11,6 @@ echo "***********************************************"
 echo "---apt update e upgrade---"
 echo "***********************************************"
 sudo apt-get -y update
-# upgrade to sudo 14.04.2 LTS
-# sudo python3.2 get-pip.py
 
 echo "***********************************************"
 echo "--- python/Flask Stuff  (notice version 3) ---"
@@ -23,38 +21,6 @@ sudo apt-get -y install python3-pip
 sudo apt-get -y install python3-dev python3-setuptools
 sudo apt-get -y install git
 sudo apt-get -y install supervisor
-
-
-echo "***********************************************"
-echo "--- PhantomJS (for tests)          ---"
-echo "***********************************************"
-
-# if [[ $EUID -ne 0 ]]; then
-#     echo "This script must be run as root" 1>&2
-#     exit 1
-# fi
-
-# PHANTOM_VERSION="phantomjs-1.9.8"
-# ARCH=$(uname -m)
-
-# if ! [ $ARCH = "x86_64" ]; then
-#     $ARCH="i686"
-# fi
-
-# PHANTOM_JS="$PHANTOM_VERSION-linux-$ARCH"
-
-# # sudo apt-get update
-# sudo apt-get install build-essential chrpath libssl-dev libxft-dev -y
-# sudo apt-get install libfreetype6 libfreetype6-dev -y
-# sudo apt-get install libfontconfig1 libfontconfig1-dev -y
-
-# cd ~
-# wget https://bitbucket.org/ariya/phantomjs/downloads/$PHANTOM_JS.tar.bz2
-# sudo tar xvjf $PHANTOM_JS.tar.bz2
-
-# sudo mv $PHANTOM_JS /usr/local/share
-# sudo ln -sf /usr/local/share/$PHANTOM_JS/bin/phantomjs /usr/local/bin
-echo "--- PhantomJS Finished          ---"
 
 
 echo "***********************************************"
@@ -69,9 +35,7 @@ echo " "
 echo "--- Supervisor Setup executed ---"
 echo " "
 echo "***********************************************"
-echo " If the Summarizer App does not run on port 5000 "
-echo " You might have to manually run nltk_setup.py "
-echo " on the GUEST server                           "
+echo " Main install script finished                  "
 echo "***********************************************"
 
 

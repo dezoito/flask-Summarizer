@@ -8,6 +8,7 @@ COPY ./requirements.txt /requirements.txt
 
 COPY ./sh_scripts/* /
 RUN /bin/bash -c "source install.sh"
+RUN /bin/bash -c "source install_phantom_js.sh"
 RUN /bin/bash -c "source install_nltk.sh"
 
 RUN pip3 install -r /requirements.txt

@@ -14,8 +14,7 @@ echo "***********************************************"
 python3 nltk_setup.py &
 wait %1
 
-# copy downloaded language files to "vagrant" user directory
-# (IF They were downloaded to /root if you used sudo for the command above :( )
+# copy downloaded language files to shared directory
 sudo cp -R /root/nltk_data /usr/share/nltk_data
 
 echo "***********************************************"
