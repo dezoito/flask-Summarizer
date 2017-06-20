@@ -1,32 +1,30 @@
-FROM python:3.6
+FROM ubuntu:14.04
+MAINTAINER dezoito <an.dezoito@gmail.com>
 
 ENV PYTHONUNBUFFERED 1
 
 # Requirements have to be pulled and installed here, otherwise caching won't work
-COPY ./requirements /requirements
+COPY ./requirements.txt /requirements.txt
 
-COPY ./sh_scripts/install.sh /install.sh
+COPY ./sh_scripts/* /
 RUN /bin/bash -c "source install.sh"
 
+RUN pip3 install -r /requirements.txt
 
-RUN pip install -r /requirements/production.txt \
-    && groupadd -r flask \
-    && useradd -r -g flask flask
+RUN sed -i 's/\r//' /install_nltk.sh
+RUN chmod +x /install_nltk.sh
+RUN /install_nltk.sh
 
-COPY . /app
-RUN chown -R flask /app
+RUN sed -i 's/\r//' /supervisor.sh
+RUN chmod +x /supervisor.sh
+RUN /supervisor.sh
 
-COPY ./compose/flask/gunicorn.sh /gunicorn.sh
 COPY ./compose/flask/entrypoint.sh /entrypoint.sh
+RUN sed -i 's/\r//' /entrypoint.sh
+RUN chmod +x /entrypoint.sh
 
-# Use sed to turn the files into one line commands
-RUN sed -i 's/\r//' /entrypoint.sh \
-    && sed -i 's/\r//' /gunicorn.sh \
-    && chmod +x /entrypoint.sh \
-    && chown flask /entrypoint.sh \
-    && chmod +x /gunicorn.sh \
-    && chown flask /gunicorn.sh
 
 WORKDIR /app
+
 
 ENTRYPOINT ["/entrypoint.sh"]
