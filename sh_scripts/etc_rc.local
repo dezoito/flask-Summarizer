@@ -13,7 +13,7 @@
 
 sleep 5
 echo "*********** startapp ***********"
-cd /vagrant/shell_commands
+cd /app/sh_scripts
 sh startapp.sh
 
 exit 0

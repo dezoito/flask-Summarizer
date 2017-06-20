@@ -10,7 +10,7 @@
 command = gunicorn app:app -b 0.0.0.0:5000
 
 #complete path to your application directory
-directory = /vagrant
+directory = /app
 
 #User to run the process with
 user = vagrant

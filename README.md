@@ -17,26 +17,16 @@ long to run, so I just use a customized version of summary.py (I'm using Brazili
 
 ### Bootstrapping this app
 
-Assuming you have VirtualBox and Vagrant installed, just cd to the project root and run
+Assuming you have Docker and Docker Compose installed, just cd to the project root and run
 
 ```sh
-    vagrant up --provision
+    ./rundev.sh
 ```
-
-Note: if your host machine runs on Windows, you have to edit the vagrant
-file and comment out these lines:
-
-```ruby
-    if os.to_s == "windows"
-      flask_config.vm.provision :shell, path: "./shell_commands/proxy_config.sh"
-    end
-```
-
 
 If everything runs smoothly, you will be able to open the app from [http://localhost:5000](http://localhost:5000).
 
 Note: If you want to run it on a virtualenv, you'll have to manually setup NLTK and
-install PhantomJS (see [`shell_commands/install.sh`](https://github.com/dezoito/flask_Summarizer/blob/master/shell_commands/install.sh) to see how it's done in Ubuntu).
+install PhantomJS (see [`sh_scripts/install.sh`](https://github.com/dezoito/flask_Summarizer/blob/master/sh_scripts/install.sh) to see how it's done in Ubuntu).
 
 ### Running Tests
 The functional tests now use PhantomJS's headless browser!

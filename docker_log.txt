@@ -1,0 +1,128 @@
+Install from:
+
+https://docs.docker.com/engine/installation/linux/ubuntulinux/
+
+user@Ultra ~ $ uname -r
+4.4.0-31-generic
+
+
+/etc/apt/sources.list.d/docker.list
+deb https://apt.dockerproject.org/repo ubuntu-xenial main
+
+See extra info on creating groups
+
+Finally, to start docker on boot:
+sudo systemctl enable docker
+
+# baixando imagem para Ubuntu:
+sudo docker pull ubuntu
+
+# baixando imagem para Python 3.6 # a mesma utilizada em gitlab:
+sudo docker pull pyhton:3.6
+
+# seguindo tutorial DS
+https://blog.ochronus.com/a-docker-primer-from-zero-to-a-running-flask-app-1b29cf9b9dcf#.suyiz94m6
+
+# criando grupo docker (ja existia) e adicionando o usuario atual
+sudo groupadd docker
+sudo gpasswd -a user docker
+sudo usermod -aG docker $USER
+
+# reiniciando docker para que utilize grupo
+
+
+
+# remove all containers
+ docker rm $(docker ps -aq)
+
+# remove an image
+docker rmi c54a2cc56cbb
+
+===============
+Up to this point we have docker running, images for ubuntu and Py3.6 and
+successfully ran a flask application
+
+
+
+========================
+To get the container´s ip address, run the 2 commands:
+
+docker ps
+docker inspect container_name | grep IPAddress
+
+
+============================
+# Instalação de docker composer (as su)
+curl -L https://github.com/docker/compose/releases/download/1.8.0/docker-compose-`uname -s`-`uname -m` > /usr/local/bin/docker-compose
+chmod +x /usr/local/bin/docker-compose
+
+======================
+# After copying cookiecutter files:
+# Building the dev environment
+docker-compose -f dev.yml build
+
+
+# Booting up dev environment
+docker-compose -f dev.yml up
+
+
+# to build and boot for PRODUCTION:
+sudo docker-compose -f docker-compose.yml build
+sudo docker-compose -f docker-compose.yml up
+
+# Build AND Boot
+docker-compose -f dev.yml build && docker-compose -f dev.yml up # dev
+docker-compose build && sudo docker-compose up # prod
+
+=========================
+# to get all configs, including running IP address from a container
+(where 6744cc83309c is the container ID)
+docker inspect 6744cc83309c
+
+# Formata a saida de forma legivel
+# requer a instalação de jq (apt-get)
+docker inspect 6744cc83309c | JQ
+
+# Syntax to run commands (example)
+docker-compose -f dev.yml run flask pip3 install beeprint
+
+# Running commands in interactive mode (in this case, a bash shell)
+docker exec -it flasksummarizer_flask_1 bash
+
+# OR
+docker exec -it flasksummarizer_flask_1 bash
+python -Wi manage.py test idaho.core.tests.unit --settings config.settings.test -k
+python -Wi manage.py test idaho.core.tests -k --liveserver=localhost:8081-9000 --settings config.settings.test
+python -Wi manage.py test idaho.core.tests.unit.test_views_for_search --settings config.settings.test -k
+
+python -Wi manage.py test idaho.core.tests.functional -k --settings config.settings.test --liveserver=localhost:8081-9000
+python -Wi manage.py test idaho.core.tests.functional.test_es_index -k --settings config.settings.test
+
+# OR (to run all tests from host's prompt)
+docker-compose -f dev.yml run flask python -Wi manage.py test idaho.core.tests -k --liveserver=localhost:8081-9000 --settings config.settings.test
+
+# to run indexing of all models
+docker-compose -f dev.yml run flask python -Wi manage.py es_index
+
+
+
+# Stop all containers
+docker stop $(docker ps -a -q)
+# Delete all containers
+docker rm $(docker ps -a -q)
+# Delete all images
+docker rmi $(docker images -q)
+# Delete all docker volumes!!!
+docker volume rm $(docker volume ls)
+
+
+==========================================================================
+Pushing custom images to gitlab registry:
+
+docker login registry.gitlab.com
+
+# Builds the image used in dev/testing (hence Dockerfile-dev)
+# this builds and pushes image "dezoito/idaho/image"
+docker build -f ./compose/flask/Dockerfile-dev -t registry.gitlab.com/dezoito/idaho/image .
+docker push registry.gitlab.com/dezoito/idaho/image
+
