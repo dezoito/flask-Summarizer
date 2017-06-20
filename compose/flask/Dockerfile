@@ -23,8 +23,12 @@ COPY ./compose/flask/entrypoint.sh /entrypoint.sh
 RUN sed -i 's/\r//' /entrypoint.sh
 RUN chmod +x /entrypoint.sh
 
+COPY ./compose/flask/gunicorn.sh /gunicorn.sh
+RUN sed -i 's/\r//' /gunicorn.sh
+RUN chmod +x /gunicorn.sh
+
 
 WORKDIR /app
 
 
-ENTRYPOINT ["/entrypoint.sh"]
+# ENTRYPOINT ["/entrypoint.sh"]

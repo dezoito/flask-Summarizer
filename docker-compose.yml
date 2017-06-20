@@ -1,8 +1,8 @@
 version: '2'
 
-volumes:
-  myshare:
-    driver: local
+# volumes:
+#   myshare:
+#     driver: local
 
 services:
 
@@ -10,28 +10,31 @@ services:
     build:
       context: .
       dockerfile: ./compose/flask/Dockerfile
-    # command: /gunicorn.sh
+    command: /gunicorn.sh
     # user: flask
     # depends_on:
     #   - postgres
     #   - redis
-    env_file: prod.env
+    # env_file: prod.env
     environment:
     #   # - POSTGRES_USER=docker_ex
     - USE_DOCKER=yes
     #   - GOOGLE_APPS_API_KEY=test
     #   - flask_SECRET_KEY=somekeyfortesting
     volumes:
-    - 'myshare:/app'
+    # - 'myshare:/app'
+    - .:/app
+    ports:
+      - "81:81"
 
   nginx:
     build: ./compose/nginx
     depends_on:
       - flask
     volumes:
-    - 'myshare:/app'
+    # - 'myshare:/app'
+    - .:/app
     ports:
       - "80:80"
-      - "81:81"
 
 
