@@ -12,7 +12,7 @@ services:
     #   - postgres
     # env_file: dev.env
     environment:
-      # - POSTGRES_USER=some_user
+      - DEBUG=True
       - USE_DOCKER=yes
       # - GOOGLE_APPS_API_KEY=test
     volumes:

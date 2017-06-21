@@ -17,8 +17,8 @@ services:
     #   - redis
     # env_file: prod.env
     environment:
-    #   # - POSTGRES_USER=docker_ex
     - USE_DOCKER=yes
+    - DEBUG=False
     #   - GOOGLE_APPS_API_KEY=test
     #   - flask_SECRET_KEY=somekeyfortesting
     volumes:
