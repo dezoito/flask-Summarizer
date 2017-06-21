@@ -1,7 +1,7 @@
 flask_Summarizer
 ---------------------------------------------------
 
-A very simple Flask based API to create a summary from Brazilian Portuguese documents and articles.
+A very simple Flask based API to create a summary from documents and articles.
 
 It is based on the following projects:
 
@@ -15,28 +15,32 @@ The Textrank algorithm seems to deliver a better summary, but was taking too
 long to run, so I just use a customized version of summary.py (I'm using Brazilian Portuguese Stopwords and Tokenizer).
 
 
-### Bootstrapping this app
+### Dockerizing this app
 
-Assuming you have VirtualBox and Vagrant installed, just cd to the project root and run
+You can use Docker to run the application in development or in production mode (assuming you have Docker and Docker Compose installed).
+
+#### Development Mode
+To build the app run in development mode just cd to the project root and run:
 
 ```sh
-    vagrant up --provision
+    ./rundev.sh
 ```
-
-Note: if your host machine runs on Windows, you have to edit the vagrant
-file and comment out these lines:
-
-```ruby
-    if os.to_s == "windows"
-      flask_config.vm.provision :shell, path: "./shell_commands/proxy_config.sh"
-    end
-```
-
 
 If everything runs smoothly, you will be able to open the app from [http://localhost:5000](http://localhost:5000).
 
+This will run the app using Flask's built-in server on port 5000 and install testing dependencies (such as PhantomJS).
+
+#### Production Mode
+To build the app run it in production, cd to the project root and run:
+
+```sh
+    ./runprod.sh
+```
+
+This will install gunicorn, nginx and serv it on port 80
+
 Note: If you want to run it on a virtualenv, you'll have to manually setup NLTK and
-install PhantomJS (see [`shell_commands/install.sh`](https://github.com/dezoito/flask_Summarizer/blob/master/shell_commands/install.sh) to see how it's done in Ubuntu).
+install PhantomJS (see [`sh_scripts/install.sh`](https://github.com/dezoito/flask_Summarizer/blob/master/sh_scripts/install_phantom_js.sh) to see how it's done in Ubuntu).
 
 ### Running Tests
 The functional tests now use PhantomJS's headless browser!

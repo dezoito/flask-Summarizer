@@ -3,19 +3,19 @@
 # should be copyied to /etc/supervisor/conf.d/app.conf
 ############################
 
-#name of the process
+# name of the process
 [program:app]
 
-#command to run
-command = gunicorn app:app -b 0.0.0.0:5000
+# command to run
+command = gunicorn app:app -b 0.0.0.0:81
 
-#complete path to your application directory
-directory = /vagrant
+# complete path to your application directory
+directory = /app
 
-#User to run the process with
-user = vagrant
+# User to run the process with
+user = root
 
-#Start process at system boot
+# Start process at system boot
 autostart=true
 
 ############################
