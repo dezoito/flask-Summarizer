@@ -3,7 +3,7 @@ echo "***********************************************"
 echo "--- ENTRYPOINT                              ---"
 echo "***********************************************"
 sudo cp /supervisor_configs /etc/supervisor/conf.d/app.conf
-cat /etc/supervisor/conf.d/app.conf
+# cat /etc/supervisor/conf.d/app.conf
 sudo service supervisor restart
 sudo supervisorctl reread
 sudo supervisorctl update

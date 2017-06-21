@@ -15,18 +15,9 @@ RUN sed -i 's/\r//' /install_nltk.sh
 RUN chmod +x /install_nltk.sh
 RUN /install_nltk.sh
 
-RUN sed -i 's/\r//' /supervisor.sh
-RUN chmod +x /supervisor.sh
-RUN /supervisor.sh
-
 COPY ./compose/flask/entrypoint.sh /entrypoint.sh
 RUN sed -i 's/\r//' /entrypoint.sh
 RUN chmod +x /entrypoint.sh
-
-COPY ./compose/flask/gunicorn.sh /gunicorn.sh
-RUN sed -i 's/\r//' /gunicorn.sh
-RUN chmod +x /gunicorn.sh
-
 
 WORKDIR /app
 
