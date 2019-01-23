@@ -8,8 +8,10 @@ app.config.from_object('config')
 app.wsgi_app = ProxyFix(app.wsgi_app) # for gunicorn
 
 from app import views
+from app.api import *
 
 # the toolbar is only enabled in debug mode:
-if os.environ['DEBUG']=="True":
-    app.debug = True
-    toolbar = DebugToolbarExtension(app)
+if 'DEBUG' in os.environ:
+    if os.environ['DEBUG'] == "True":
+        app.debug = True
+        toolbar = DebugToolbarExtension(app)

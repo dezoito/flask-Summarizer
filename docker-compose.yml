@@ -7,6 +7,8 @@ version: '2'
 services:
 
   flask:
+    restart: always
+    image: flask_summ_app
     build:
       context: .
       dockerfile: ./compose/flask/Dockerfile
@@ -28,6 +30,8 @@ services:
     #   - "81:81"
 
   nginx:
+    restart: always
+    image: flask_summ_nginx
     build: ./compose/nginx
     depends_on:
       - flask
@@ -35,6 +39,5 @@ services:
     # - 'myshare:/app'
     - .:/app
     ports:
-      - "80:80"
-
+      - "5000:80"
 

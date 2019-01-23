@@ -1,9 +1,10 @@
+import summarize
+import textrank
 from flask import render_template, flash, Response, redirect, request
-import summarize, textrank
 from app import app
 from .forms import FormResumo
 
-@app.route('/', methods=['GET', 'POST'])
+# @app.route('/', methods=['GET', 'POST'])
 @app.route('/form_resumo', methods=['GET', 'POST'])
 def form_resumo():
     """
