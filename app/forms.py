@@ -4,9 +4,9 @@ from wtforms.validators import DataRequired
 
 
 class FormResumo(Form):
-    texto = TextAreaField('article', validators=[
+    article = TextAreaField('article', validators=[
                           DataRequired()],
                           render_kw={'style': 'background-color: azure'})
-    Algorithm = SelectField(u'algorithm', choices=[(
+    algorithm = SelectField(u'Algorithm', choices=[(
         'summarize', 'summarize'), ('textrank', 'textrank')])
     # remember_me = BooleanField('remember_me', default=False)

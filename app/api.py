@@ -38,7 +38,7 @@ class Summary(Resource):
     @ns.param('article', 'Text to be summarized')
     @ns.param('algorithm', 'Algorithm: summarize or textrank (default)')
     def post(self, *kwargs):
-        print("handling POST call")
+        # print("handling POST call")
         parser = reqparse.RequestParser(bundle_errors=True)
         parser.add_argument('article',
                             required=True,
@@ -52,7 +52,6 @@ class Summary(Resource):
 
         args = parser.parse_args()
 
-        print(args)
         if args.algorithm == "summarize":
             algo = "summarize"
             operation = summarize.summarize_text(
@@ -61,7 +60,7 @@ class Summary(Resource):
             algo = "textrank"
             operation = textrank.extractSentences(args.article)
 
-        print("Sending response to client")
+        # print("Sending response to client")
 
         return ({"article_summary": operation,
                  "algorithm": algo,
