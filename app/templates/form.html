@@ -5,8 +5,8 @@
 
 {% block content %}
   <h1>{{ title }}</h1>
-  <form action="" method="post" id="form_resumo" name="form_resumo">
-      {{ form.hidden_tag() }}
+  <form id="form_resumo" name="form_resumo">
+      <!-- {{ form.hidden_tag() }} -->
       <p>
           Please enter your text:
           | <a href="javascript:insertSampleText(0)">Sample 1</a>
@@ -29,8 +29,7 @@
       <br/>
 
       <div class="btn-group">
-        <button type="submit" class="btn btn-default" id="btnSubmit">Go</button>
-        <button type="button" class="btn btn-default" id="btnAjax">Go with AJAX</button>
+        <button type="button" class="btn btn-default" id="btnGo">Go</button>
       </div>
 
       <p>
@@ -38,7 +37,7 @@
 
       <br/>
       Texto Resumido:<br/>
-      <textarea cols="70" rows="15" name="txt_resumo" id="txt_resumo">{% if rc.texto_resumido %}{{ rc.texto_resumido }}{% endif %}</textarea>
+      <textarea cols="70" rows="15" name="txt_resumo" id="txt_resumo" style="background-color: azure"></textarea>
 
   </form>
 

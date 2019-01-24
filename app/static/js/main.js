@@ -3,15 +3,17 @@ jQuery(document).ready(function(){
     /**
      * requests summarization via ajax
      */
-    $("#btnAjax").click(function(){
+    $("#btnGo").click(function () {
+        console.log("starting AJAX API call");
+        console.log($("#form_resumo").serialize());
         $.ajax({
                 type:"POST",
-                url:"/ajax_resumo",
+                url: "/api/summarize",
                 data:$( "#form_resumo" ).serialize(),
 
                 success: function(response){
                     $( "#txt_resumo" ).val( response );
-                    console.log("Ajax call to method --ajax_resumo-- answered");
+                    console.log("Ajax call to method to /api/summaryze-- answered");
                 },
 
                 fail: function(response){
