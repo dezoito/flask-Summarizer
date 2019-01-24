@@ -1,6 +1,7 @@
 from flask_restplus import Api, Resource, fields, reqparse
 import summarize
 import textrank
+import datetime
 from app import app
 
 
@@ -16,40 +17,56 @@ ns = api.namespace('api', description='Summary Generation operations')
 # Defines a model for Summaries
 # based on the dataframe already generate by Crawler
 summary = api.model('Summary', {
-    'texto_resumido': fields.String})
+    'article_summary': fields.String,
+    'algorithm': fields.String,
+    'utc_date_generated': fields.DateTime()})
 
 
 @ns.route('/summarize')
 class Summary(Resource):
-    """ Returns a summary from entered text """
+    """
+    Returns a summary from entered text :
+        article_summary: Shortened text
+        algorithm: algorithm used
+        utc_date_generated: Timezone aware timestamp (UTC)
+    """
+    # POST calls are not working!!!
+    # see https://github.com/noirbizarre/flask-restplus/issues/84
 
-    @ns.doc('Summarize')
-    @ns.marshal_list_with(summary)
-    @ns.param('max', 'Max items limit')
-    def get(self, query):
-        parser = reqparse.RequestParser()
-        parser.add_argument('texto',
+    @ns.doc('Summary')
+    @ns.marshal_with(summary)
+    @ns.param('article', 'Text to be summarized')
+    @ns.param('algorithm', 'Algorithm: summarize or textrank (default)')
+    def post(self, *kwargs):
+        parser = reqparse.RequestParser(bundle_errors=True)
+        parser.add_argument('article',
                             required=True,
                             type=str,
                             help='Text to be summarized')
         parser.add_argument('algorithm',
-                            required=True,
+                            required=False,
+                            default="summarize",
                             type=str,
-                            help='Algorithm used to generate summary (summarize or textrank)')
+                            help='Algorithm: summarize or textrank (default)')
 
         args = parser.parse_args()
 
         if args.algorithm == "summarize":
+            algo = "summarize"
             operation = summarize.summarize_text(
-                args.texto, block_sep='\n').__str__()
+                args.article, block_sep='\n').__str__()
         else:
-            operation = textrank.extractSentences(args.texto)
+            algo = "textrank"
+            operation = textrank.extractSentences(args.article)
 
-        return (operation,
+        return ({"article_summary": operation,
+                 "algorithm": algo,
+                 "utc_date_generated": datetime.datetime.utcnow()},
                 200,
                 {'Access-Control-Allow-Origin': '*',
                  'Access-Control-Allow-Methods': 'POST, GET'})
 
-    #  Post method does the same thing GET does
-    def post(self, query):
-        return self.get(query)
+    #  GET method placeholder
+    # def get(self, **kwargs):
+    #     """ GET verb has not been implemented """
+    #     return "not implemented"

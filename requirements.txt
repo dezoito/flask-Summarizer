@@ -5,7 +5,7 @@ decorator==4.0.4
 Flask==0.12.2
 Flask-Babel==0.9
 Flask-DebugToolbar==0.10.1
-flask-restplus==0.10.1
+flask-restplus==0.12.1
 Flask-Testing==0.4.2
 Flask-WTF==0.14.2
 flipflop==1.0
