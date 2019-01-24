@@ -45,7 +45,7 @@ class Summary(Resource):
                             type=str,
                             help='Text to be summarized')
         parser.add_argument('algorithm',
-                            required=False,
+                            required=True,
                             default="summarize",
                             type=str,
                             help='Algorithm: summarize or textrank (default)')
