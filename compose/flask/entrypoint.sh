@@ -10,4 +10,4 @@ sudo supervisorctl update
 sudo supervisorctl start app
 sudo service supervisor restart
 cd /app
-gunicorn app:app -b 0.0.0.0:81
+gunicorn app:app -b 0.0.0.0:81 --workers 2 --timeout 240
