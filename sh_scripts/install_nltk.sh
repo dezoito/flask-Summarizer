@@ -12,7 +12,7 @@ python3 nltk_setup.py &
 wait %1
 
 # copy downloaded language files to shared directory
-sudo mv /root/nltk_data /usr/share/nltk_data
+mv /root/nltk_data /usr/share/nltk_data
 
 echo "***********************************************"
 echo "--- End of NLTK setup ---"

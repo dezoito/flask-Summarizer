@@ -4,6 +4,8 @@ version: '2'
 services:
 
   flask:
+    image: flask_summ_dev
+    restart: on-failure
     build:
       context: .
       dockerfile: ./compose/flask/Dockerfile-dev
