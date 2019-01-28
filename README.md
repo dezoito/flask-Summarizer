@@ -3,16 +3,15 @@ flask_Summarizer
 
 A very simple Flask based API to create a summary from documents and articles.
 
-It is based on the following projects:
+### Updates
 
-**Summarize.py:**
-https://github.com/Rotten194/summarize.py
+[Jan-2019] Improvements to the API, including auto-generated swagger documentation,
+courtesy of [Flask RestPlus](https://github.com/noirbizarre/flask-restplus):
 
-**Python implementation of TextRank:**
-http://www.davidadamojr.com/textrank-implementation-in-python-github-repo/
+![](./screenshot.jpg?raw=true)
+Navigating to the root URL let's you see the automatically generated documentation for all endpoints and test them on the fly.
 
-The Textrank algorithm seems to deliver a better summary, but was taking too
-long to run, so I just use a customized version of summary.py (I'm using Brazilian Portuguese Stopwords and Tokenizer).
+You can also go to `\<root URL\>/form` to test the API trough an HTML client form.
 
 
 ### Dockerizing this app
@@ -43,7 +42,7 @@ Note: If you want to run it on a virtualenv, you'll have to manually setup NLTK 
 install PhantomJS (see [`sh_scripts/install.sh`](https://github.com/dezoito/flask_Summarizer/blob/master/sh_scripts/install_phantom_js.sh) to see how it's done in Ubuntu).
 
 ### Running Tests
-The functional tests now use PhantomJS's headless browser!
+The functional tests still use PhantomJS's headless browser (I left them because some people might still find this useful).
 
 From the `tests/` directory, run:
 ```sh
@@ -53,9 +52,23 @@ From the `tests/` directory, run:
 You can also run individual test suites:
 ```sh
     python3 -m unittest tests_unit
-    python3 -m unittest tests_functional
+    python3 -m unittest tests_views
+    python3 -m unittest tests_api
+    python3 -m unittest tests_phantomJS
 ```
 
+
+### References:
+Flask Summarizer is based on the following projects:
+
+**Summarize.py:**
+https://github.com/Rotten194/summarize.py
+
+**Python implementation of TextRank:**
+http://www.davidadamojr.com/textrank-implementation-in-python-github-repo/
+
+The Textrank algorithm seems to deliver a better summary, but was taking too
+long to run, so I just use a customized version of summary.py (I'm using Brazilian Portuguese Stopwords and Tokenizer).
 
 
 
