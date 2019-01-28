@@ -7,7 +7,7 @@ jQuery(document).ready(function(){
      */
     $("#btnGo").click(function () {
         console.log("starting AJAX API call");
-        console.log($("#form_resumo").serialize());
+        // console.log($("#form_resumo").serialize());
         $.ajax({
                 type:"POST",
                 url: "/api/summarize",

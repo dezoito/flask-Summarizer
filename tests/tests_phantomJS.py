@@ -16,9 +16,6 @@ import config
 import sample_strings
 from flask import Flask
 from selenium import webdriver
-from selenium.webdriver.common.by import By
-from selenium.webdriver.support.ui import WebDriverWait
-from selenium.webdriver.support import expected_conditions as EC
 from app import app
 from utils import print_test_time_elapsed
 
@@ -46,7 +43,7 @@ class StartingTestCase(unittest.TestCase):
         """ tests form submission """
         self.driver.get(self.baseURL + "form")
         self.driver.find_element_by_id("article").send_keys("Resuma isso!")
-        self.driver.find_element_by_id("btnSubmit").click()
+        self.driver.find_element_by_id("btnGo").click()
         resumo = self.driver.find_element_by_id("div_resumo").text
         assert "Resuma isso!" in resumo
 
@@ -55,9 +52,8 @@ class StartingTestCase(unittest.TestCase):
         """ tests that sample texts can be loaded into the form's textarea """
         self.driver.get(self.baseURL + "form")
         self.driver.find_element_by_link_text("Sample 1").click()
-        # WebDriverWait(self.driver, 3).until(
-        #     EC.text_to_be_present_in_element((By.ID, "article"), "a"))
-        self.driver.find_element_by_id("btnSubmit").click()
+        self.driver.find_element_by_id("btnGo").click()
+        time.sleep(3)
         self.assertIn("Um suéter azul.",
                 self.driver.find_element_by_id("div_resumo").text)
 
