@@ -36,27 +36,30 @@ class StartingTestCase(unittest.TestCase):
     # (does NOT use LiveServer)
     # --------------------------------------------------------------------------
     @print_test_time_elapsed
-    def test_home(self):
+    def test_pjs_home(self):
+        """ Swagger API generated page loads? """
         self.driver.get(self.baseURL)
-        assert "Summarizer App" == self.driver.title
+        assert "Summarizer API" == self.driver.title
 
     @print_test_time_elapsed
-    def test_home_envio_form(self):
-        self.driver.get(self.baseURL)
-        self.driver.find_element_by_id("texto").send_keys("Resuma isso!")
+    def test_pjs_home_envio_form(self):
+        """ tests form submission """
+        self.driver.get(self.baseURL + "form")
+        self.driver.find_element_by_id("article").send_keys("Resuma isso!")
         self.driver.find_element_by_id("btnSubmit").click()
-        resumo = self.driver.find_element_by_id("txt_resumo").text
+        resumo = self.driver.find_element_by_id("div_resumo").text
         assert "Resuma isso!" in resumo
 
     @print_test_time_elapsed
-    def test_sample_text(self):
-        self.driver.get(self.baseURL)
+    def test_pjs_sample_text(self):
+        """ tests that sample texts can be loaded into the form's textarea """
+        self.driver.get(self.baseURL + "form")
         self.driver.find_element_by_link_text("Sample 1").click()
         # WebDriverWait(self.driver, 3).until(
-        #     EC.text_to_be_present_in_element((By.ID, "texto"), "a"))
+        #     EC.text_to_be_present_in_element((By.ID, "article"), "a"))
         self.driver.find_element_by_id("btnSubmit").click()
         self.assertIn("Um suéter azul.",
-                self.driver.find_element_by_id("txt_resumo").text)
+                self.driver.find_element_by_id("div_resumo").text)
 
 
 if __name__ == '__main__':

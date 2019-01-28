@@ -58,7 +58,7 @@ class StartingTestCase(TestCase):
     # --------------------------------------------------------------------------
     @print_test_time_elapsed
     def test_view_form_resumo_get(self):
-        rv = self.client.get('/')
+        rv = self.client.get('/form')
         # print(rv.data)
         assert rv.status_code == 200
         assert 'Please enter your text:' in str(rv.data)
@@ -70,6 +70,7 @@ class StartingTestCase(TestCase):
     def test_view_form_resumo_post(self):
         post_data = {'texto': self.small_str}
         rv = self.client.post('/form', data=post_data, follow_redirects=True)
+        # print(rv.data)
         assert rv.status_code == 200
         assert 'Todos os direitos reservados' in str(rv.data)
 

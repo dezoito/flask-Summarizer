@@ -7,7 +7,7 @@ from .forms import FormResumo
 # @app.route('/', methods=['GET', 'POST'])
 
 
-@app.route('/form', methods=['GET'])
+@app.route('/form', methods=['GET', 'POST'])
 def form_resumo():
     """
     loads form page

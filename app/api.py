@@ -5,7 +5,7 @@ import datetime
 from app import app
 
 
-description = """ An API to generate summary of submitted text """
+description = """ An API to generate summaries of submitted text """
 
 api = Api(app, version='1.0', title='Summarizer API',
           description=description,)
