@@ -2,13 +2,14 @@
 #!flask/bin/python
 
 # See: http://blog.miguelgrinberg.com/post/the-flask-mega-tutorial-part-vii-unit-testing
-import os
-import unittest
 import sys
 sys.path.append('..')
-import sample_strings
-from app.views import make_summary
 from utils import print_test_time_elapsed
+import textrank
+import summarize
+import sample_strings
+import os
+import unittest
 
 
 class TestCase(unittest.TestCase):
@@ -26,21 +27,24 @@ class TestCase(unittest.TestCase):
         """
         Tests summaries using the simplest algorithm
         """
-        assert len(self.small_str) >= len(make_summary(self.small_str))  # Single line, so > or =
-        assert len(self.medium_str) > len(make_summary(self.medium_str))
-        assert len(self.large_str) > len(make_summary(self.large_str))
+        assert len(self.small_str) >= len(summarize.summarize_text(
+            self.small_str, block_sep='\n').__str__())  # Single line, so > or =
+        assert len(self.medium_str) > len(summarize.summarize_text(
+            self.medium_str, block_sep='\n').__str__())
+        assert len(self.large_str) > len(summarize.summarize_text(
+            self.large_str, block_sep='\n').__str__())
 
     @print_test_time_elapsed
     def test_summarize_on_view_using_text_rank_algo(self):
         """
         Tests summaries using the textRank algorithm (takes longer)
         """
-        assert len(self.small_str) >= len(make_summary(self.small_str,
-                                                       "textrank"))  # Single line, so > or =
-        assert len(self.medium_str) > len(make_summary(self.medium_str,
-                                                       "textrank"))
-        assert len(self.large_str) > len(make_summary(self.large_str,
-                                                      "textrank"))
+        assert len(self.small_str) >= len(textrank.extractSentences(
+            self.small_str))  # Single line, so > or =
+        assert len(self.medium_str) > len(
+            textrank.extractSentences(self.medium_str))
+        assert len(self.large_str) > len(
+            textrank.extractSentences(self.large_str))
 
 
 if __name__ == '__main__':
