@@ -9,9 +9,10 @@ A very simple Flask based API to create a summary from documents and articles.
 courtesy of [Flask RestPlus](https://github.com/noirbizarre/flask-restplus):
 
 ![](./screenshot.jpg?raw=true)
+
 Navigating to the root URL let's you see the automatically generated documentation for all endpoints and test them on the fly.
 
-You can also go to `\<root URL\>/form` to test the API trough an HTML client form.
+You can also go to `<root URL>/form` to test the API using an HTML client form.
 
 
 ### Dockerizing this app
