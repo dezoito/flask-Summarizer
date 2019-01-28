@@ -39,7 +39,7 @@ class StartingTestCase(TestCase):
         """
         app = Flask(__name__)
         app.config['TESTING'] = True
-        self.baseURL = "http://localhost:5000"
+        self.baseURL = "http://localhost:5000/form"
         return app
 
     # --------------------------------------------------------------------------
@@ -69,38 +69,16 @@ class StartingTestCase(TestCase):
     @print_test_time_elapsed
     def test_view_form_resumo_post(self):
         post_data = {'texto': self.small_str}
-        rv = self.client.post('/', data=post_data, follow_redirects=True)
+        rv = self.client.post('/form', data=post_data, follow_redirects=True)
         assert rv.status_code == 200
         assert 'Todos os direitos reservados' in str(rv.data)
-
 
     @print_test_time_elapsed
     def test_view_form_resumo_post_with_textrank(self):
         post_data = {'texto': self.small_str, 'algorithm': 'textrank'}
-        rv = self.client.post('/', data=post_data, follow_redirects=True)
+        rv = self.client.post('/form', data=post_data, follow_redirects=True)
         assert rv.status_code == 200
         assert 'Todos os direitos reservados' in str(rv.data)
-
-
-    @print_test_time_elapsed
-    def test_ajax_resumo_post(self):
-        post_data = {'texto': self.small_str}
-        rv = self.client.post('/ajax_resumo',
-                              data=post_data,
-                              follow_redirects=True)
-        assert rv.status_code == 200
-        # the ajax view returns nothing but the string
-        assert b'Todos os direitos reservados' == rv.data
-
-
-    @print_test_time_elapsed
-    def test_ajax_resumo_post_with_textrank(self):
-        post_data = {'texto': self.small_str, 'algorithm': 'textrank'}
-        rv = self.client.post('/ajax_resumo',
-                              data=post_data,
-                              follow_redirects=True)
-        assert rv.status_code == 200
-        assert b'Todos os direitos reservados' == rv.data
 
 
 if __name__ == '__main__':
