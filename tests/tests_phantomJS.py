@@ -52,8 +52,9 @@ class StartingTestCase(unittest.TestCase):
         """ tests that sample texts can be loaded into the form's textarea """
         self.driver.get(self.baseURL + "form")
         self.driver.find_element_by_link_text("Sample 1").click()
+        time.sleep(1)
         self.driver.find_element_by_id("btnGo").click()
-        time.sleep(3)
+        time.sleep(2)
         self.assertIn("Um suéter azul.",
                 self.driver.find_element_by_id("div_resumo").text)
 

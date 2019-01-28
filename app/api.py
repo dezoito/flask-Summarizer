@@ -67,9 +67,4 @@ class Summary(Resource):
                  "utc_date_generated": datetime.datetime.utcnow()},
                 200,
                 {'Access-Control-Allow-Origin': '*',
-                 'Access-Control-Allow-Methods': 'POST, GET'})
-
-    #  GET method placeholder
-    # def get(self, **kwargs):
-    #     """ GET verb has not been implemented """
-    #     return "not implemented"
+                 'Access-Control-Allow-Methods': 'POST'})

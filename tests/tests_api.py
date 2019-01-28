@@ -5,7 +5,7 @@
 # http://blog.miguelgrinberg.com/post/the-flask-mega-tutorial-part-vii-unit-testing
 # https://pythonhosted.org/Flask-Testing/
 # http://flask.pocoo.org/docs/0.10/testing/#testing
-
+import json
 import os
 import unittest
 import tempfile
@@ -39,7 +39,7 @@ class StartingTestCase(TestCase):
         """
         app = Flask(__name__)
         app.config['TESTING'] = True
-        self.baseURL = "http://localhost:5000/form"
+        self.baseURL = "http://localhost:5000"
         return app
 
     # --------------------------------------------------------------------------
@@ -47,39 +47,35 @@ class StartingTestCase(TestCase):
     # (does NOT use LiveServer)
     # --------------------------------------------------------------------------
     @print_test_time_elapsed
-    def test_real_server_is_up_and_running(self):
+    def test_api_is_up_and_running(self):
         response = urllib.request.urlopen(self.baseURL)
         self.assertEqual(response.code, 200)
         # returned source code is stored in
         # response.read()
 
     # --------------------------------------------------------------------------
-    # Testing Views with GET
+    # Testing APi endpoints
     # --------------------------------------------------------------------------
     @print_test_time_elapsed
-    def test_view_form_resumo_get(self):
-        rv = self.client.get('/form')
+    def test_api_post_summarize(self):
+        post_data = {'article': self.small_str, 'algorithm': 'summarize'}
+        rv = self.client.post(
+            '/api/summarize', data=post_data)
         # print(rv.data)
+        js = json.loads(rv.data.decode("utf-8"))
         assert rv.status_code == 200
-        assert 'Please enter your text:' in str(rv.data)
-
-    # --------------------------------------------------------------------------
-    # Testing Views with POST
-    # --------------------------------------------------------------------------
-    @print_test_time_elapsed
-    def test_view_form_resumo_post(self):
-        post_data = {'article': self.small_str}
-        rv = self.client.post('/form', data=post_data, follow_redirects=True)
-        # print(rv.data)
-        assert rv.status_code == 200
-        assert 'Todos os direitos reservados' in str(rv.data)
+        assert 'Todos os direitos reservados' in js['article_summary']
+        assert 'summarize' in js['algorithm']
 
     @print_test_time_elapsed
-    def test_view_form_resumo_post_with_textrank(self):
+    def test_api_post_textrank(self):
         post_data = {'article': self.small_str, 'algorithm': 'textrank'}
-        rv = self.client.post('/form', data=post_data, follow_redirects=True)
+        rv = self.client.post(
+            '/api/summarize', data=post_data)
+        js = json.loads(rv.data.decode("utf-8"))
         assert rv.status_code == 200
-        assert 'Todos os direitos reservados' in str(rv.data)
+        assert 'Todos os direitos reservados' in js['article_summary']
+        assert 'textrank' in js['algorithm']
 
 
 if __name__ == '__main__':
